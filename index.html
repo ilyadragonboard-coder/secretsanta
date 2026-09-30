@@ -13,79 +13,14 @@
             padding: 0;
         }
 
-        :root {
-            --bg: #080a12;
-            --surface: rgba(255, 255, 255, 0.06);
-            --surface-hover: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.12);
-
-            --text: #ffffff;
-            --muted: #9da3b5;
-
-            --red: #ff4d6d;
-            --red-light: #ff6b81;
-
-            --purple: #7657ff;
-            --green: #35d07f;
-            --gold: #ffd166;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             min-height: 100vh;
-
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
-            color: var(--text);
-
+            font-family: Arial, sans-serif;
+            color: #fff;
             background:
-                radial-gradient(
-                    circle at 10% 0%,
-                    rgba(255, 77, 109, 0.18),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 90% 10%,
-                    rgba(118, 87, 255, 0.15),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 50% 100%,
-                    rgba(53, 208, 127, 0.1),
-                    transparent 30%
-                ),
-                var(--bg);
-
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-
-            position: fixed;
-            inset: 0;
-
-            pointer-events: none;
-
-            background-image:
-                radial-gradient(
-                    circle,
-                    rgba(255, 255, 255, 0.5) 1px,
-                    transparent 1px
-                );
-
-            background-size: 85px 85px;
-
-            opacity: 0.06;
+                radial-gradient(circle at 15% 20%, rgba(255, 77, 109, 0.18), transparent 30%),
+                radial-gradient(circle at 85% 10%, rgba(120, 90, 255, 0.2), transparent 30%),
+                #080912;
         }
 
         button,
@@ -96,1005 +31,453 @@
 
         button {
             border: 0;
-            color: inherit;
             cursor: pointer;
         }
 
-        /* Header */
-
         .header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-
-            border-bottom: 1px solid var(--border);
-
-            background:
-                rgba(8, 10, 18, 0.72);
-
-            backdrop-filter: blur(20px);
-        }
-
-        .header-inner {
-            width: min(1150px, 100%);
-
-            height: 74px;
-
-            margin: 0 auto;
-            padding: 0 24px;
-
+            width: 100%;
+            padding: 22px 7%;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(8, 9, 18, 0.7);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
-
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 800;
         }
 
         .logo-icon {
             width: 42px;
             height: 42px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 13px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--red),
-                    #ff795c
-                );
-
-            box-shadow:
-                0 8px 30px
-                rgba(255, 77, 109, 0.25);
-
-            font-size: 21px;
-        }
-
-        /* Buttons */
-
-        .button {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
-
-            min-height: 44px;
-
-            padding: 0 17px;
-
             border-radius: 13px;
-
-            font-size: 14px;
-            font-weight: 700;
-
-            transition:
-                transform 0.2s,
-                background 0.2s,
-                border-color 0.2s;
+            background: linear-gradient(135deg, #ff4d6d, #8b5cf6);
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.25);
         }
 
-        .button:hover {
-            transform: translateY(-2px);
+        .header-actions {
+            display: flex;
+            gap: 10px;
         }
 
-        .button-primary {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--red),
-                    #ff7659
-                );
-
-            box-shadow:
-                0 10px 28px
-                rgba(255, 77, 109, 0.2);
+        .btn {
+            padding: 12px 18px;
+            border-radius: 13px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.2s;
         }
 
-        .button-secondary {
-            border: 1px solid var(--border);
-
-            background:
-                rgba(255, 255, 255, 0.06);
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-1px);
         }
 
-        .button-secondary:hover {
-            background:
-                rgba(255, 255, 255, 0.1);
+        .btn-primary {
+            background: linear-gradient(135deg, #ff4d6d, #8b5cf6);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.22);
         }
 
-        /* Hero */
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
 
         .hero {
-            width: min(900px, 100%);
-
-            margin: 78px auto 0;
-            padding: 0 24px;
-
-            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 25px 50px;
         }
 
-        .hero-badge {
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .badge {
             display: inline-flex;
-            align-items: center;
-            gap: 7px;
-
-            padding: 8px 14px;
-
-            border: 1px solid var(--border);
+            padding: 8px 13px;
+            margin-bottom: 20px;
             border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.05);
-
-            color: #d7d9e2;
-            font-size: 13px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #d6d6e4;
+            font-size: 14px;
         }
 
-        .hero-title {
-            margin-top: 22px;
-
-            font-size:
-                clamp(48px, 8vw, 82px);
-
-            line-height: 0.94;
-            letter-spacing: -5px;
-            font-weight: 900;
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            margin-bottom: 22px;
         }
 
         .gradient-text {
-            background:
-                linear-gradient(
-                    90deg,
-                    #ff4d6d,
-                    #ffd166,
-                    #35d07f,
-                    #70a1ff
-                );
-
+            background: linear-gradient(90deg, #ff4d6d, #a78bfa);
             -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero-description {
+        .hero p {
+            color: #a6a7b7;
+            font-size: 18px;
+            line-height: 1.6;
             max-width: 650px;
-
-            margin: 25px auto 0;
-
-            color: var(--muted);
-
-            font-size: 17px;
-            line-height: 1.7;
+            margin-bottom: 30px;
         }
 
-        /* Main */
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
 
         .main {
-            width: min(1100px, 100%);
-
-            margin: 65px auto 100px;
-            padding: 0 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px 80px;
         }
 
         .section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             gap: 20px;
-
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
-        .section-title {
-            font-size: 24px;
-            font-weight: 800;
+        .section-header h2 {
+            font-size: 28px;
         }
-
-        .section-subtitle {
-            margin-top: 5px;
-
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        /* Boxes */
 
         .boxes {
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(245px, 1fr)
-                );
-
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
         }
 
-        .box-card {
-            position: relative;
-
-            min-height: 310px;
-
-            padding: 20px;
-
-            overflow: hidden;
-
-            border:
-                1px solid var(--border);
-
+        .box {
+            padding: 22px;
+            min-height: 220px;
             border-radius: 24px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255, 255, 255, 0.09),
-                    rgba(255, 255, 255, 0.035)
-                );
-
-            transition:
-                transform 0.3s,
-                border-color 0.3s,
-                box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(18px);
+            transition: 0.25s;
         }
 
-        .box-card::before {
-            content: "";
+        .box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
 
+        .box-glow {
             position: absolute;
-
-            width: 170px;
-            height: 170px;
-
-            right: -80px;
-            top: -80px;
-
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-
-            background: var(--box-color);
-
-            opacity: 0.16;
-
-            filter: blur(25px);
-
-            pointer-events: none;
+            filter: blur(50px);
+            opacity: 0.25;
+            right: -70px;
+            top: -70px;
         }
 
-        .box-card:hover {
-            transform: translateY(-6px);
-
-            border-color:
-                rgba(255, 255, 255, 0.22);
-
-            box-shadow:
-                0 25px 60px
-                rgba(0, 0, 0, 0.3);
+        .box-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
         }
 
-        .box-header {
-            position: relative;
-            z-index: 2;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .box-number {
-            color: var(--muted);
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: 0.8px;
-        }
-
-        .icon-button {
-            width: 34px;
-            height: 34px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 10px;
-
-            background:
-                rgba(255, 255, 255, 0.06);
-
-            transition:
-                background 0.2s,
-                transform 0.2s;
-        }
-
-        .icon-button:hover {
-            background:
-                rgba(255, 77, 109, 0.18);
-
-            transform: scale(1.05);
-        }
-
-        /* Gift */
-
-        .gift {
-            position: relative;
-
-            width: 120px;
-            height: 108px;
-
-            margin: 27px auto 20px;
-
-            transform: rotate(-2deg);
-
-            filter:
-                drop-shadow(
-                    0 18px 20px
-                    rgba(0, 0, 0, 0.3)
-                );
-
-            transition:
-                transform 0.3s;
-        }
-
-        .box-card:hover .gift {
-            transform:
-                translateY(-5px)
-                rotate(2deg);
-        }
-
-        .gift-body {
-            position: absolute;
-
-            left: 5px;
-            bottom: 0;
-
-            width: 110px;
-            height: 70px;
-
-            border-radius:
-                5px 5px 11px 11px;
-
-            background: var(--box-color);
-        }
-
-        .gift-lid {
-            position: absolute;
-
-            left: 0;
-            top: 22px;
-
-            width: 120px;
-            height: 25px;
-
-            border-radius: 6px;
-
-            background:
-                color-mix(
-                    in srgb,
-                    var(--box-color),
-                    white 15%
-                );
-
-            z-index: 2;
-        }
-
-        .ribbon-vertical {
-            position: absolute;
-
-            left: 51px;
-            top: 21px;
-
-            width: 18px;
-            height: 82px;
-
-            background:
-                rgba(255, 255, 255, 0.65);
-
-            z-index: 3;
-        }
-
-        .ribbon-horizontal {
-            position: absolute;
-
-            left: 0;
-            top: 29px;
-
-            width: 120px;
-            height: 12px;
-
-            background:
-                rgba(255, 255, 255, 0.65);
-
-            z-index: 4;
-        }
-
-        .bow {
-            position: absolute;
-
-            left: 43px;
-            top: 7px;
-
-            z-index: 5;
-
-            font-size: 30px;
-        }
-
-        .box-name {
-            position: relative;
-            z-index: 2;
-
-            text-align: center;
-
-            font-size: 20px;
-            font-weight: 800;
+        .box h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
         }
 
         .box-description {
-            position: relative;
-            z-index: 2;
-
-            margin-top: 6px;
-
-            text-align: center;
-
-            color: var(--muted);
-
-            font-size: 13px;
+            color: #999baa;
+            min-height: 42px;
+            line-height: 1.5;
         }
 
-        .box-open {
-            position: relative;
-            z-index: 2;
-
-            width: 100%;
-
-            margin-top: 18px;
-            padding: 11px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 12px;
-
-            background:
-                rgba(255, 255, 255, 0.06);
-
-            transition:
-                background 0.2s;
-        }
-
-        .box-open:hover {
-            background:
-                rgba(255, 255, 255, 0.12);
-        }
-
-        /* Add card */
-
-        .add-card {
-            min-height: 310px;
-
-            display: grid;
-            place-items: center;
-
-            border:
-                2px dashed
-                rgba(255, 255, 255, 0.12);
-
-            border-radius: 24px;
-
-            cursor: pointer;
-
-            transition:
-                background 0.25s,
-                border-color 0.25s,
-                transform 0.25s;
-        }
-
-        .add-card:hover {
-            border-color: var(--red);
-
-            background:
-                rgba(255, 77, 109, 0.035);
-
-            transform: translateY(-4px);
-        }
-
-        .add-content {
-            text-align: center;
-        }
-
-        .add-icon {
-            width: 64px;
-            height: 64px;
-
-            display: grid;
-            place-items: center;
-
-            margin: 0 auto 15px;
-
-            border-radius: 19px;
-
-            background:
-                rgba(255, 255, 255, 0.06);
-
-            font-size: 30px;
-        }
-
-        .add-title {
-            font-weight: 800;
-        }
-
-        .add-description {
-            margin-top: 6px;
-
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        /* Participants */
-
-        .participants {
-            margin-top: 55px;
-            padding: 25px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 24px;
-
-            background:
-                rgba(255, 255, 255, 0.035);
-        }
-
-        .participants-list {
+        .box-info {
+            margin-top: 15px;
             display: flex;
             flex-wrap: wrap;
-            gap: 9px;
+            gap: 8px;
         }
 
-        .person {
+        .tag {
+            padding: 6px 9px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, 0.07);
+            color: #bfc0cf;
+            font-size: 12px;
+        }
+
+        .box-actions {
             display: flex;
-            align-items: center;
-            gap: 9px;
-
-            padding: 8px 12px;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.06);
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, 0.05);
+            gap: 8px;
+            margin-top: 18px;
         }
 
-        .avatar {
-            width: 28px;
-            height: 28px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--red),
-                    var(--purple)
-                );
-
-            font-size: 11px;
-            font-weight: 800;
+        .box-actions .btn {
+            flex: 1;
         }
-
-        .remove-person {
-            display: grid;
-            place-items: center;
-
-            width: 22px;
-            height: 22px;
-
-            border-radius: 50%;
-
-            background: transparent;
-
-            color: #858999;
-
-            transition:
-                color 0.2s,
-                background 0.2s;
-        }
-
-        .remove-person:hover {
-            color: var(--red);
-
-            background:
-                rgba(255, 77, 109, 0.1);
-        }
-
-        /* Empty */
 
         .empty {
-            grid-column: 1 / -1;
-
-            padding: 70px 20px;
-
+            padding: 50px 20px;
             text-align: center;
-
-            color: var(--muted);
+            color: #8d8f9f;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
         }
-
-        .empty-icon {
-            margin-bottom: 14px;
-
-            font-size: 55px;
-        }
-
-        .empty h2 {
-            color: var(--text);
-
-            font-size: 22px;
-        }
-
-        .empty p {
-            margin-top: 7px;
-
-            font-size: 14px;
-        }
-
-        /* Modal */
 
         .modal {
             position: fixed;
             inset: 0;
-
-            z-index: 100;
-
             display: none;
-
             align-items: center;
             justify-content: center;
-
             padding: 20px;
-
-            background:
-                rgba(0, 0, 0, 0.72);
-
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
         }
 
         .modal.active {
             display: flex;
         }
 
-        .modal-content {
-            width: min(500px, 100%);
-
+        .modal-card {
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
             padding: 28px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 26px;
-
-            background:
-                #111522;
-
-            box-shadow:
-                0 40px 100px
-                rgba(0, 0, 0, 0.55);
-
-            animation:
-                modal-in 0.25s ease;
-        }
-
-        @keyframes modal-in {
-            from {
-                opacity: 0;
-                transform:
-                    translateY(18px)
-                    scale(0.97);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
+            border-radius: 25px;
+            background: #11131f;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
         }
 
         .modal-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-
+            align-items: center;
             margin-bottom: 24px;
         }
 
-        .modal-title {
-            font-size: 21px;
-            font-weight: 800;
+        .modal-header h2 {
+            font-size: 25px;
         }
 
-        .modal-close {
-            width: 36px;
-            height: 36px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 10px;
-
-            background:
-                rgba(255, 255, 255, 0.06);
-
-            font-size: 20px;
+        .close {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            color: #aaa;
+            background: rgba(255, 255, 255, 0.07);
         }
 
-        .modal-close:hover {
-            background:
-                rgba(255, 255, 255, 0.1);
+        .form-group {
+            margin-bottom: 17px;
         }
 
-        .field {
-            margin-top: 17px;
-        }
-
-        .field:first-of-type {
-            margin-top: 0;
-        }
-
-        .field-label {
+        .form-group label {
             display: block;
-
-            margin-bottom: 7px;
-
-            color: #c9ccda;
-
-            font-size: 13px;
-            font-weight: 600;
+            margin-bottom: 8px;
+            color: #c8c9d5;
+            font-size: 14px;
         }
 
         .input,
         .textarea {
             width: 100%;
-
-            padding: 13px 14px;
-
+            padding: 14px;
+            border-radius: 13px;
             outline: none;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 12px;
-
-            background:
-                rgba(255, 255, 255, 0.055);
-
-            color: white;
-
-            transition:
-                border-color 0.2s,
-                background 0.2s;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .input:focus,
         .textarea:focus {
-            border-color:
-                rgba(255, 77, 109, 0.7);
-
-            background:
-                rgba(255, 255, 255, 0.075);
+            border-color: #8b5cf6;
         }
 
         .textarea {
-            min-height: 90px;
-
+            min-height: 100px;
             resize: vertical;
         }
 
-        .color-picker {
+        .colors {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .color-option {
-            width: 35px;
-            height: 35px;
-
-            border: 3px solid transparent;
-
+        .color {
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-
-            transition:
-                transform 0.2s,
-                border-color 0.2s;
+            border: 3px solid transparent;
         }
 
-        .color-option:hover {
-            transform: scale(1.08);
-        }
-
-        .color-option.selected {
-            border-color: white;
+        .color.selected {
+            border-color: #fff;
             transform: scale(1.1);
         }
 
-        .modal-actions {
+        .modal-footer {
             display: flex;
             gap: 10px;
-
-            margin-top: 25px;
+            margin-top: 22px;
         }
 
-        .modal-actions .button {
+        .modal-footer .btn {
             flex: 1;
         }
 
-        /* People modal */
+        .invite-code {
+            margin: 18px 0;
+            padding: 20px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+        }
 
-        .add-person-row {
+        .invite-code span {
+            display: block;
+            margin-top: 8px;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #ff6b81;
+        }
+
+        .people-list {
             display: flex;
-            gap: 8px;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .add-person-row .input {
-            min-width: 0;
-        }
-
-        .modal-people {
-            margin-top: 20px;
-        }
-
-        .modal-person {
+        .person {
+            padding: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 15px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+        }
 
-            margin-bottom: 8px;
+        .person-name {
+            font-weight: 700;
+        }
+
+        .person-email {
+            color: #858796;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .delete-btn {
             padding: 8px 10px;
-
-            border-radius: 12px;
-
-            background:
-                rgba(255, 255, 255, 0.045);
+            border-radius: 9px;
+            color: #ff7a8d;
+            background: rgba(255, 77, 109, 0.1);
         }
 
-        .modal-person-info {
-            display: flex;
-            align-items: center;
-            gap: 9px;
+        .join-info {
+            padding: 15px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: #bdb8d9;
+            line-height: 1.5;
         }
-
-        .draw-button {
-            width: 100%;
-
-            margin-top: 18px;
-        }
-
-        /* Result */
 
         .result {
             text-align: center;
         }
 
-        .result-gift {
-            margin: 15px 0 20px;
-
-            font-size: 78px;
-
-            animation:
-                gift-float 2s
-                ease-in-out infinite;
+        .result-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
         }
 
-        @keyframes gift-float {
-            0%,
-            100% {
-                transform:
-                    translateY(0)
-                    rotate(-3deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-9px)
-                    rotate(3deg);
-            }
-        }
-
-        .result-title {
-            font-size: 26px;
+        .result h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
         }
 
         .result-name {
-            margin: 14px 0;
-
-            font-size: 38px;
-            font-weight: 900;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--red),
-                    var(--gold)
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
+            margin: 20px 0;
+            padding: 18px;
+            border-radius: 16px;
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 77, 109, 0.15),
+                rgba(139, 92, 246, 0.15)
+            );
         }
 
-        .result-description {
-            color: var(--muted);
-
-            line-height: 1.6;
+        .result-details {
+            padding: 18px;
+            text-align: left;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        /* Responsive */
+        .result-details div {
+            margin-bottom: 12px;
+            color: #b4b5c2;
+        }
+
+        .result-details div:last-child {
+            margin-bottom: 0;
+        }
+
+        .santa-btn {
+            width: 100%;
+            margin-top: 15px;
+        }
 
         @media (max-width: 650px) {
-            .header-inner {
-                padding: 0 15px;
+            .header {
+                padding: 16px 20px;
+            }
+
+            .header-actions .btn:first-child {
+                display: none;
             }
 
             .hero {
-                margin-top: 50px;
+                padding-top: 55px;
             }
 
-            .hero-title {
-                letter-spacing: -3px;
+            .hero h1 {
+                letter-spacing: -2px;
             }
 
-            .main {
-                margin-top: 50px;
-                padding: 0 15px;
-            }
-
-            .section-header {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .section-header > .button {
-                width: 100%;
-            }
-
-            .boxes {
-                grid-template-columns: 1fr;
-            }
-
-            .participants {
-                padding: 20px;
-            }
-
-            .participants .section-header {
-                flex-direction: row;
-            }
-
-            .modal-content {
-                padding: 22px;
-            }
-
-            .add-person-row {
-                flex-direction: column;
-            }
-
-            .add-person-row .button {
-                width: 100%;
+            .modal-card {
+                padding: 21px;
             }
         }
     </style>
@@ -1102,1040 +485,1032 @@
 
 <body>
 
-    <header class="header">
-        <div class="header-inner">
+<header class="header">
+    <div class="logo">
+        <div class="logo-icon">🎁</div>
+        Secret Santa
+    </div>
 
-            <div class="logo">
-                <div class="logo-icon">
-                    🎁
-                </div>
+    <div class="header-actions">
+        <button class="btn" onclick="openJoinModal()">
+            Войти по коду
+        </button>
 
-                <span>
-                    Secret Santa
-                </span>
-            </div>
+        <button class="btn btn-primary" onclick="openCreateModal()">
+            + Создать коробку
+        </button>
+    </div>
+</header>
 
-            <button
-                class="button button-secondary"
-                onclick="openParticipants()"
-            >
-                👥 Участники
-            </button>
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">🎄 Тайный Санта для друзей</div>
 
-        </div>
-    </header>
-
-    <section class="hero">
-
-        <div class="hero-badge">
-            🎄 Праздничный генератор подарков
-        </div>
-
-        <h1 class="hero-title">
-            Тайный<br>
-            <span class="gradient-text">
-                Санта
-            </span>
+        <h1>
+            Создавай.
+            <span class="gradient-text">Приглашай.</span>
+            Жеребьуй.
         </h1>
 
-        <p class="hero-description">
-            Создавайте праздничные коробки,
-            добавляйте друзей и устраивайте
-            свою собственную тайную раздачу подарков.
+        <p>
+            Создай коробку, получи уникальный инвайт-код и отправь его друзьям.
+            Каждый сможет присоединиться без регистрации.
         </p>
 
-    </section>
-
-    <main class="main">
-
-        <div class="section-header">
-
-            <div>
-                <h2 class="section-title">
-                    🎁 Твои коробки
-                </h2>
-
-                <p
-                    class="section-subtitle"
-                    id="boxCounter"
-                >
-                    0 коробок
-                </p>
-            </div>
-
-            <button
-                class="button button-primary"
-                onclick="openCreate()"
-            >
-                ＋ Создать коробку
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="openCreateModal()">
+                🎁 Создать коробку
             </button>
 
+            <button class="btn" onclick="openJoinModal()">
+                🔑 Ввести инвайт-код
+            </button>
+        </div>
+    </div>
+</section>
+
+<main class="main">
+
+    <div class="section-header">
+        <h2>Мои коробки</h2>
+
+        <button class="btn" onclick="openCreateModal()">
+            + Новая коробка
+        </button>
+    </div>
+
+    <div class="boxes" id="boxes"></div>
+
+</main>
+
+
+<div class="modal" id="createModal">
+    <div class="modal-card">
+
+        <div class="modal-header">
+            <h2>Создать коробку</h2>
+
+            <button class="close" onclick="closeModal('createModal')">
+                ✕
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label>Название</label>
+
+            <input
+                class="input"
+                id="boxName"
+                placeholder="Например: Secret Santa 2026"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Описание</label>
+
+            <textarea
+                class="textarea"
+                id="boxDescription"
+                placeholder="Например: Дарим подарки до 3000₽"
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Цвет</label>
+
+            <div class="colors">
+                <button
+                    class="color selected"
+                    style="background:#ff4d6d"
+                    onclick="selectColor('#ff4d6d', this)"
+                ></button>
+
+                <button
+                    class="color"
+                    style="background:#8b5cf6"
+                    onclick="selectColor('#8b5cf6', this)"
+                ></button>
+
+                <button
+                    class="color"
+                    style="background:#06b6d4"
+                    onclick="selectColor('#06b6d4', this)"
+                ></button>
+
+                <button
+                    class="color"
+                    style="background:#22c55e"
+                    onclick="selectColor('#22c55e', this)"
+                ></button>
+
+                <button
+                    class="color"
+                    style="background:#f59e0b"
+                    onclick="selectColor('#f59e0b', this)"
+                ></button>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button
+                class="btn"
+                onclick="closeModal('createModal')"
+            >
+                Отмена
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="createBox()"
+            >
+                Создать
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal" id="joinModal">
+    <div class="modal-card">
+
+        <div class="modal-header">
+            <h2>Войти в коробку</h2>
+
+            <button class="close" onclick="closeModal('joinModal')">
+                ✕
+            </button>
+        </div>
+
+        <div class="join-info">
+            🔑 Введи инвайт-код, который дал тебе организатор.
+        </div>
+
+        <div class="form-group">
+            <label>Инвайт-код</label>
+
+            <input
+                class="input"
+                id="inviteInput"
+                placeholder="Например SANTA-7K42"
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="modal-footer">
+            <button
+                class="btn"
+                onclick="closeModal('joinModal')"
+            >
+                Отмена
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="findBoxByCode()"
+            >
+                Найти коробку
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal" id="participantModal">
+    <div class="modal-card">
+
+        <div class="modal-header">
+            <h2>Присоединиться</h2>
+
+            <button
+                class="close"
+                onclick="closeModal('participantModal')"
+            >
+                ✕
+            </button>
+        </div>
+
+        <div class="join-info" id="joinBoxInfo"></div>
+
+        <div class="form-group">
+            <label>Твоё имя</label>
+
+            <input
+                class="input"
+                id="participantName"
+                placeholder="Например, Илья"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+
+            <input
+                class="input"
+                id="participantEmail"
+                type="email"
+                placeholder="example@mail.com"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Пожелания к подарку</label>
+
+            <textarea
+                class="textarea"
+                id="participantWishes"
+                placeholder="Например: LEGO, игры, книги..."
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Дополнительно</label>
+
+            <textarea
+                class="textarea"
+                id="participantExtra"
+                placeholder="Любимые цвета, хобби и т.д."
+            ></textarea>
+        </div>
+
+        <div class="modal-footer">
+            <button
+                class="btn"
+                onclick="closeModal('participantModal')"
+            >
+                Отмена
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="joinBox()"
+            >
+                🎁 Присоединиться
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal" id="boxModal">
+    <div class="modal-card">
+
+        <div class="modal-header">
+            <h2 id="boxModalTitle"></h2>
+
+            <button class="close" onclick="closeModal('boxModal')">
+                ✕
+            </button>
+        </div>
+
+        <div class="invite-code">
+            Инвайт-код
+
+            <span id="boxInviteCode"></span>
+        </div>
+
+        <button
+            class="btn"
+            style="width:100%;"
+            onclick="copyInviteCode()"
+        >
+            📋 Скопировать код
+        </button>
+
+        <div
+            style="
+                margin-top:25px;
+                margin-bottom:12px;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+            "
+        >
+            <h3>Участники</h3>
+
+            <span
+                class="tag"
+                id="peopleCount"
+            ></span>
         </div>
 
         <div
-            class="boxes"
-            id="boxes"
+            class="people-list"
+            id="peopleList"
         ></div>
 
-        <section class="participants">
+        <button
+            class="btn btn-primary santa-btn"
+            onclick="runSanta()"
+        >
+            🎅 Запустить жеребьёвку
+        </button>
 
-            <div class="section-header">
+        <button
+            class="btn santa-btn"
+            onclick="closeModal('boxModal')"
+        >
+            Закрыть
+        </button>
 
-                <div>
-                    <h2 class="section-title">
-                        👥 Участники
-                    </h2>
-
-                    <p
-                        class="section-subtitle"
-                        id="peopleCounter"
-                    >
-                        0 участников
-                    </p>
-                </div>
-
-                <button
-                    class="button button-secondary"
-                    onclick="openParticipants()"
-                >
-                    Управление
-                </button>
-
-            </div>
-
-            <div
-                class="participants-list"
-                id="participantsList"
-            ></div>
-
-        </section>
-
-    </main>
-
-    <div
-        class="modal"
-        id="createModal"
-    >
-        <div class="modal-content">
-
-            <div class="modal-header">
-
-                <h2 class="modal-title">
-                    🎁 Новая коробка
-                </h2>
-
-                <button
-                    class="modal-close"
-                    onclick="closeModal('createModal')"
-                >
-                    ×
-                </button>
-
-            </div>
-
-            <div class="field">
-
-                <label class="field-label">
-                    Название
-                </label>
-
-                <input
-                    class="input"
-                    id="boxName"
-                    type="text"
-                    placeholder="Например: Новый год 2026"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label class="field-label">
-                    Описание
-                </label>
-
-                <textarea
-                    class="textarea"
-                    id="boxDescription"
-                    placeholder="Например: Подарки до 2000 ₽"
-                ></textarea>
-
-            </div>
-
-            <div class="field">
-
-                <label class="field-label">
-                    Цвет коробки
-                </label>
-
-                <div class="color-picker">
-
-                    <button
-                        class="color-option selected"
-                        style="background: #ff4d6d"
-                        data-color="#ff4d6d"
-                        onclick="selectColor(this)"
-                    ></button>
-
-                    <button
-                        class="color-option"
-                        style="background: #35d07f"
-                        data-color="#35d07f"
-                        onclick="selectColor(this)"
-                    ></button>
-
-                    <button
-                        class="color-option"
-                        style="background: #5c7cff"
-                        data-color="#5c7cff"
-                        onclick="selectColor(this)"
-                    ></button>
-
-                    <button
-                        class="color-option"
-                        style="background: #a855f7"
-                        data-color="#a855f7"
-                        onclick="selectColor(this)"
-                    ></button>
-
-                    <button
-                        class="color-option"
-                        style="background: #f59e0b"
-                        data-color="#f59e0b"
-                        onclick="selectColor(this)"
-                    ></button>
-
-                </div>
-
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    class="button button-secondary"
-                    onclick="closeModal('createModal')"
-                >
-                    Отмена
-                </button>
-
-                <button
-                    class="button button-primary"
-                    onclick="createBox()"
-                >
-                    Создать 🎁
-                </button>
-
-            </div>
-
-        </div>
     </div>
+</div>
 
-    <div
-        class="modal"
-        id="peopleModal"
-    >
-        <div class="modal-content">
 
-            <div class="modal-header">
+<div class="modal" id="resultModal">
+    <div class="modal-card">
 
-                <h2 class="modal-title">
-                    👥 Участники
-                </h2>
+        <div class="result">
 
-                <button
-                    class="modal-close"
-                    onclick="closeModal('peopleModal')"
-                >
-                    ×
-                </button>
-
+            <div class="result-icon">
+                🎉
             </div>
 
-            <div class="field">
+            <h2>Жеребьёвка завершена!</h2>
 
-                <label class="field-label">
-                    Имя участника
-                </label>
-
-                <div class="add-person-row">
-
-                    <input
-                        class="input"
-                        id="personName"
-                        type="text"
-                        placeholder="Например: Илья"
-                        onkeydown="
-                            if (event.key === 'Enter') {
-                                addPerson();
-                            }
-                        "
-                    >
-
-                    <button
-                        class="button button-primary"
-                        onclick="addPerson()"
-                    >
-                        Добавить
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div
-                class="modal-people"
-                id="modalPeople"
-            ></div>
-
-            <button
-                class="button button-primary draw-button"
-                onclick="runSanta()"
-            >
-                🎲 Провести жеребьёвку
-            </button>
-
-        </div>
-    </div>
-
-    <div
-        class="modal"
-        id="resultModal"
-    >
-        <div class="modal-content result">
-
-            <button
-                class="modal-close"
-                style="margin-left: auto;"
-                onclick="closeModal('resultModal')"
-            >
-                ×
-            </button>
-
-            <div class="result-gift">
-                🎁
-            </div>
-
-            <h2
-                class="result-title"
-                id="resultTitle"
-            >
-                Твой Тайный Санта
-            </h2>
+            <p style="color:#999baa; margin-top:10px;">
+                Результаты сохранены.
+            </p>
 
             <div
                 class="result-name"
                 id="resultName"
-            >
-                —
-            </div>
+            ></div>
 
-            <p
-                class="result-description"
-                id="resultText"
-            >
-                Здесь появится результат жеребьёвки.
-            </p>
+            <div
+                class="result-details"
+                id="resultDetails"
+            ></div>
 
             <button
-                class="button button-primary draw-button"
+                class="btn btn-primary santa-btn"
                 onclick="closeModal('resultModal')"
             >
-                Понятно
+                Отлично!
             </button>
 
         </div>
+
     </div>
+</div>
 
-    <script>
-        let boxes =
-            JSON.parse(
-                localStorage.getItem("secretSantaBoxes")
-            ) || [];
 
-        let people =
-            JSON.parse(
-                localStorage.getItem("secretSantaPeople")
-            ) || [];
+<script>
+    let boxes = JSON.parse(
+        localStorage.getItem("secretSantaBoxes") || "[]"
+    );
 
-        let assignments =
-            JSON.parse(
-                localStorage.getItem(
-                    "secretSantaAssignments"
-                )
-            ) || {};
+    let selectedColor = "#ff4d6d";
+    let currentJoinBoxId = null;
+    let currentBoxId = null;
 
-        let selectedColor = "#ff4d6d";
+    function save() {
+        localStorage.setItem(
+            "secretSantaBoxes",
+            JSON.stringify(boxes)
+        );
+    }
 
-        function save() {
-            localStorage.setItem(
-                "secretSantaBoxes",
-                JSON.stringify(boxes)
-            );
+    function openModal(id) {
+        document
+            .getElementById(id)
+            .classList.add("active");
+    }
 
-            localStorage.setItem(
-                "secretSantaPeople",
-                JSON.stringify(people)
-            );
+    function closeModal(id) {
+        document
+            .getElementById(id)
+            .classList.remove("active");
+    }
 
-            localStorage.setItem(
-                "secretSantaAssignments",
-                JSON.stringify(assignments)
-            );
+    function generateInviteCode() {
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+        let code = "SANTA-";
+
+        for (let i = 0; i < 4; i++) {
+            code += chars[
+                Math.floor(Math.random() * chars.length)
+            ];
         }
 
-        function openModal(id) {
-            document
-                .getElementById(id)
-                .classList.add("active");
+        if (
+            boxes.some(
+                box => box.inviteCode === code
+            )
+        ) {
+            return generateInviteCode();
         }
 
-        function closeModal(id) {
-            document
-                .getElementById(id)
-                .classList.remove("active");
-        }
+        return code;
+    }
 
-        function openCreate() {
-            document.getElementById(
-                "boxName"
-            ).value = "";
+    function openCreateModal() {
+        document.getElementById("boxName").value = "";
+        document.getElementById("boxDescription").value = "";
 
-            document.getElementById(
-                "boxDescription"
-            ).value = "";
+        selectedColor = "#ff4d6d";
 
-            selectedColor = "#ff4d6d";
-
-            document
-                .querySelectorAll(".color-option")
-                .forEach(option => {
-                    option.classList.remove(
-                        "selected"
-                    );
-                });
-
-            document
-                .querySelector(".color-option")
-                .classList.add("selected");
-
-            openModal("createModal");
-        }
-
-        function openParticipants() {
-            renderModalPeople();
-            openModal("peopleModal");
-        }
-
-        function selectColor(element) {
-            document
-                .querySelectorAll(".color-option")
-                .forEach(option => {
-                    option.classList.remove(
-                        "selected"
-                    );
-                });
-
-            element.classList.add("selected");
-
-            selectedColor =
-                element.dataset.color;
-        }
-
-        function createBox() {
-            const name =
-                document
-                    .getElementById("boxName")
-                    .value
-                    .trim();
-
-            const description =
-                document
-                    .getElementById("boxDescription")
-                    .value
-                    .trim();
-
-            if (!name) {
-                alert(
-                    "Введите название коробки!"
+        document
+            .querySelectorAll(".color")
+            .forEach((button, index) => {
+                button.classList.toggle(
+                    "selected",
+                    index === 0
                 );
-
-                return;
-            }
-
-            boxes.push({
-                id: Date.now(),
-                name,
-                description,
-                color: selectedColor
             });
 
-            save();
+        openModal("createModal");
+    }
 
-            closeModal("createModal");
+    function selectColor(color, element) {
+        selectedColor = color;
 
-            renderBoxes();
+        document
+            .querySelectorAll(".color")
+            .forEach(button => {
+                button.classList.remove("selected");
+            });
+
+        element.classList.add("selected");
+    }
+
+    function createBox() {
+        const name = document
+            .getElementById("boxName")
+            .value
+            .trim();
+
+        const description = document
+            .getElementById("boxDescription")
+            .value
+            .trim();
+
+        if (!name) {
+            alert("Введите название коробки.");
+            return;
         }
 
-        function deleteBox(id) {
-            if (
-                !confirm(
-                    "Удалить эту коробку?"
-                )
-            ) {
-                return;
-            }
+        const box = {
+            id: Date.now().toString(),
+            name,
+            description,
+            color: selectedColor,
+            inviteCode: generateInviteCode(),
+            people: [],
+            assignments: {},
+            createdAt: Date.now()
+        };
 
-            boxes =
-                boxes.filter(
-                    box => box.id !== id
-                );
+        boxes.push(box);
 
-            save();
+        save();
+        renderBoxes();
 
-            renderBoxes();
-        }
+        closeModal("createModal");
 
-        function renderBoxes() {
-            const container =
-                document.getElementById("boxes");
+        setTimeout(() => {
+            openBox(box.id);
+        }, 200);
+    }
 
-            document.getElementById(
-                "boxCounter"
-            ).textContent =
-                `${boxes.length} ${plural(
-                    boxes.length,
-                    "коробка",
-                    "коробки",
-                    "коробок"
-                )}`;
+    function renderBoxes() {
+        const container = document.getElementById("boxes");
 
-            container.innerHTML = "";
-
-            if (boxes.length === 0) {
-                container.innerHTML = `
-                    <div class="empty">
-
-                        <div class="empty-icon">
-                            🎁
-                        </div>
-
-                        <h2>
-                            Пока здесь пусто
-                        </h2>
-
-                        <p>
-                            Создай первую коробку
-                            для Тайного Санты
-                        </p>
-
-                    </div>
-                `;
-
-                return;
-            }
-
-            boxes.forEach(
-                (box, index) => {
-                    const card =
-                        document.createElement(
-                            "article"
-                        );
-
-                    card.className =
-                        "box-card";
-
-                    card.style.setProperty(
-                        "--box-color",
-                        box.color
-                    );
-
-                    card.innerHTML = `
-                        <div class="box-header">
-
-                            <span class="box-number">
-                                КОРОБКА #${index + 1}
-                            </span>
-
-                            <button
-                                class="icon-button"
-                                onclick="deleteBox(${box.id})"
-                                aria-label="Удалить"
-                            >
-                                🗑️
-                            </button>
-
-                        </div>
-
-                        <div class="gift">
-
-                            <div class="bow">
-                                🎀
-                            </div>
-
-                            <div class="gift-lid"></div>
-
-                            <div class="gift-body"></div>
-
-                            <div class="ribbon-vertical"></div>
-
-                            <div class="ribbon-horizontal"></div>
-
-                        </div>
-
-                        <h3 class="box-name">
-                            ${escapeHTML(box.name)}
-                        </h3>
-
-                        <p class="box-description">
-                            ${escapeHTML(
-                                box.description ||
-                                "Праздничная коробка"
-                            )}
-                        </p>
-
-                        <button
-                            class="box-open"
-                            onclick="openBox(${box.id})"
-                        >
-                            Открыть коробку →
-                        </button>
-                    `;
-
-                    container.appendChild(card);
-                }
-            );
-
-            const addCard =
-                document.createElement("div");
-
-            addCard.className =
-                "add-card";
-
-            addCard.onclick = openCreate;
-
-            addCard.innerHTML = `
-                <div class="add-content">
-
-                    <div class="add-icon">
-                        ＋
+        if (!boxes.length) {
+            container.innerHTML = `
+                <div class="empty">
+                    <div style="font-size:45px; margin-bottom:12px;">
+                        🎁
                     </div>
 
-                    <div class="add-title">
-                        Новая коробка
-                    </div>
+                    <h3 style="margin-bottom:8px;">
+                        Пока нет коробок
+                    </h3>
 
-                    <div class="add-description">
-                        Создать ещё одну
-                    </div>
-
+                    <p>
+                        Создай первую коробку для своего Secret Santa.
+                    </p>
                 </div>
             `;
 
-            container.appendChild(addCard);
+            return;
         }
 
-        function addPerson() {
-            const input =
-                document.getElementById(
-                    "personName"
-                );
+        container.innerHTML = boxes
+            .map(box => {
+                return `
+                    <div class="box">
+                        <div
+                            class="box-glow"
+                            style="background:${box.color};"
+                        ></div>
 
-            const name =
-                input.value.trim();
+                        <div class="box-icon">
+                            🎁
+                        </div>
 
-            if (!name) {
-                return;
+                        <h3>
+                            ${escapeHTML(box.name)}
+                        </h3>
+
+                        <div class="box-description">
+                            ${escapeHTML(
+                                box.description ||
+                                "Без описания"
+                            )}
+                        </div>
+
+                        <div class="box-info">
+                            <span class="tag">
+                                👥 ${box.people.length}
+                            </span>
+
+                            <span class="tag">
+                                🔑 ${box.inviteCode}
+                            </span>
+                        </div>
+
+                        <div class="box-actions">
+                            <button
+                                class="btn"
+                                onclick="openBox('${box.id}')"
+                            >
+                                Открыть
+                            </button>
+
+                            <button
+                                class="btn"
+                                onclick="deleteBox('${box.id}')"
+                            >
+                                🗑
+                            </button>
+                        </div>
+                    </div>
+                `;
+            })
+            .join("");
+    }
+
+    function openJoinModal() {
+        document.getElementById("inviteInput").value = "";
+
+        openModal("joinModal");
+
+        setTimeout(() => {
+            document
+                .getElementById("inviteInput")
+                .focus();
+        }, 100);
+    }
+
+    function findBoxByCode() {
+        const code = document
+            .getElementById("inviteInput")
+            .value
+            .trim()
+            .toUpperCase();
+
+        if (!code) {
+            alert("Введите инвайт-код.");
+            return;
+        }
+
+        const box = boxes.find(
+            item =>
+                item.inviteCode.toUpperCase() === code
+        );
+
+        if (!box) {
+            alert("Коробка с таким кодом не найдена.");
+            return;
+        }
+
+        currentJoinBoxId = box.id;
+
+        closeModal("joinModal");
+
+        document.getElementById("joinBoxInfo").innerHTML = `
+            <strong>${escapeHTML(box.name)}</strong>
+
+            <br>
+
+            ${
+                escapeHTML(
+                    box.description ||
+                    "Без описания"
+                )
             }
+        `;
 
-            const exists =
-                people.some(
-                    person =>
-                        person.toLowerCase() ===
-                        name.toLowerCase()
-                );
+        document.getElementById("participantName").value = "";
+        document.getElementById("participantEmail").value = "";
+        document.getElementById("participantWishes").value = "";
+        document.getElementById("participantExtra").value = "";
 
-            if (exists) {
-                alert(
-                    "Такой участник уже есть!"
-                );
+        openModal("participantModal");
+    }
 
-                return;
-            }
+    function joinBox() {
+        const box = boxes.find(
+            item => item.id === currentJoinBoxId
+        );
 
-            people.push(name);
-
-            input.value = "";
-
-            assignments = {};
-
-            save();
-
-            renderPeople();
-            renderModalPeople();
+        if (!box) {
+            alert("Коробка не найдена.");
+            return;
         }
 
-        function removePerson(index) {
-            people.splice(index, 1);
+        const name = document
+            .getElementById("participantName")
+            .value
+            .trim();
 
-            assignments = {};
+        const email = document
+            .getElementById("participantEmail")
+            .value
+            .trim();
 
-            save();
+        const wishes = document
+            .getElementById("participantWishes")
+            .value
+            .trim();
 
-            renderPeople();
-            renderModalPeople();
+        const extra = document
+            .getElementById("participantExtra")
+            .value
+            .trim();
+
+        if (!name) {
+            alert("Введите имя.");
+            return;
         }
 
-        function renderPeople() {
-            const container =
-                document.getElementById(
-                    "participantsList"
-                );
+        if (!email || !email.includes("@")) {
+            alert("Введите корректный email.");
+            return;
+        }
 
-            document.getElementById(
-                "peopleCounter"
-            ).textContent =
-                `${people.length} ${plural(
-                    people.length,
+        const existing = box.people.find(
+            person =>
+                person.email.toLowerCase() ===
+                email.toLowerCase()
+        );
+
+        if (existing) {
+            alert(
+                "Этот email уже участвует в данной коробке."
+            );
+
+            return;
+        }
+
+        box.people.push({
+            id: Date.now().toString(),
+            name,
+            email,
+            wishes,
+            extra
+        });
+
+        save();
+        renderBoxes();
+
+        closeModal("participantModal");
+
+        alert(
+            `Готово, ${name}! Ты присоединился к "${box.name}".`
+        );
+    }
+
+    function openBox(id) {
+        const box = boxes.find(
+            item => item.id === id
+        );
+
+        if (!box) {
+            return;
+        }
+
+        currentBoxId = id;
+
+        document.getElementById("boxModalTitle").textContent =
+            box.name;
+
+        document.getElementById("boxInviteCode").textContent =
+            box.inviteCode;
+
+        document.getElementById("peopleCount").textContent =
+            `${box.people.length} ${
+                plural(
+                    box.people.length,
                     "участник",
                     "участника",
                     "участников"
-                )}`;
+                )
+            }`;
 
-            container.innerHTML = "";
+        renderPeople(box);
 
-            if (people.length === 0) {
-                container.innerHTML = `
-                    <p class="section-subtitle">
-                        Пока никто не добавлен
-                    </p>
-                `;
+        openModal("boxModal");
+    }
 
-                return;
-            }
+    function renderPeople(box) {
+        const list = document.getElementById("peopleList");
 
-            people.forEach(person => {
-                const element =
-                    document.createElement(
-                        "div"
-                    );
+        if (!box.people.length) {
+            list.innerHTML = `
+                <div class="empty" style="padding:25px;">
+                    Пока никто не присоединился.
+                </div>
+            `;
 
-                element.className =
-                    "person";
-
-                element.innerHTML = `
-                    <div class="avatar">
-                        ${escapeHTML(
-                            person[0].toUpperCase()
-                        )}
-                    </div>
-
-                    <span>
-                        ${escapeHTML(person)}
-                    </span>
-                `;
-
-                container.appendChild(element);
-            });
+            return;
         }
 
-        function renderModalPeople() {
-            const container =
-                document.getElementById(
-                    "modalPeople"
-                );
-
-            container.innerHTML = "";
-
-            if (people.length === 0) {
-                container.innerHTML = `
-                    <p class="section-subtitle">
-                        Добавьте участников выше
-                    </p>
-                `;
-
-                return;
-            }
-
-            people.forEach(
-                (person, index) => {
-                    const element =
-                        document.createElement(
-                            "div"
-                        );
-
-                    element.className =
-                        "modal-person";
-
-                    element.innerHTML = `
-                        <div class="modal-person-info">
-
-                            <div class="avatar">
-                                ${escapeHTML(
-                                    person[0]
-                                        .toUpperCase()
-                                )}
+        list.innerHTML = box.people
+            .map(person => {
+                return `
+                    <div class="person">
+                        <div>
+                            <div class="person-name">
+                                ${escapeHTML(person.name)}
                             </div>
 
-                            <span>
-                                ${escapeHTML(person)}
-                            </span>
-
+                            <div class="person-email">
+                                ${escapeHTML(person.email)}
+                            </div>
                         </div>
 
                         <button
-                            class="remove-person"
-                            onclick="removePerson(${index})"
-                            aria-label="Удалить участника"
+                            class="delete-btn"
+                            onclick="removePerson('${box.id}', '${person.id}')"
                         >
-                            ✕
+                            Удалить
                         </button>
-                    `;
+                    </div>
+                `;
+            })
+            .join("");
+    }
 
-                    container.appendChild(element);
-                }
-            );
+    function removePerson(boxId, personId) {
+        const box = boxes.find(
+            item => item.id === boxId
+        );
+
+        if (!box) {
+            return;
         }
 
-        function runSanta() {
-            if (people.length < 2) {
-                alert(
-                    "Нужно минимум 2 участника!"
-                );
+        if (!confirm("Удалить этого участника?")) {
+            return;
+        }
 
-                return;
-            }
+        box.people = box.people.filter(
+            person => person.id !== personId
+        );
 
-            let shuffled;
-            let attempts = 0;
+        box.assignments = {};
 
-            do {
-                shuffled = [...people];
+        save();
 
-                shuffle(shuffled);
+        openBox(boxId);
+        renderBoxes();
+    }
 
-                attempts++;
-            }
-            while (
-                shuffled.some(
-                    (person, index) =>
-                        person === people[index]
-                ) &&
-                attempts < 1000
-            );
+    function runSanta() {
+        const box = boxes.find(
+            item => item.id === currentBoxId
+        );
 
-            if (
-                shuffled.some(
-                    (person, index) =>
-                        person === people[index]
-                )
-            ) {
-                alert(
-                    "Не удалось провести жеребьёвку. Попробуйте ещё раз."
-                );
+        if (!box) {
+            return;
+        }
 
-                return;
-            }
-
-            assignments = {};
-
-            people.forEach(
-                (person, index) => {
-                    assignments[person] =
-                        shuffled[index];
-                }
-            );
-
-            save();
-
-            closeModal("peopleModal");
-
+        if (box.people.length < 2) {
             alert(
-                "🎉 Жеребьёвка завершена!"
+                "Для жеребьёвки нужно минимум 2 участника."
             );
+
+            return;
         }
 
-        function openBox(id) {
-            if (people.length < 2) {
-                openModal("peopleModal");
+        const shuffled = shuffle(
+            box.people.map(person => person.id)
+        );
+
+        const assignments = {};
+
+        for (let i = 0; i < box.people.length; i++) {
+            const personId = box.people[i].id;
+            const targetId = shuffled[i];
+
+            if (personId === targetId) {
+                runSanta();
+
                 return;
             }
 
-            if (
-                Object.keys(assignments)
-                    .length === 0
-            ) {
+            assignments[personId] = targetId;
+        }
+
+        box.assignments = assignments;
+
+        save();
+
+        closeModal("boxModal");
+
+        alert(
+            "Жеребьёвка завершена! 🎅\n\n" +
+            "В этой версии результаты сохранены локально.\n" +
+            "Для реальной отправки писем нужно подключить сервер."
+        );
+
+        showResult(box);
+    }
+
+    function showResult(box) {
+        const firstPerson = box.people[0];
+
+        const targetId =
+            box.assignments[firstPerson.id];
+
+        const target = box.people.find(
+            person => person.id === targetId
+        );
+
+        if (!target) {
+            return;
+        }
+
+        document.getElementById("resultName").textContent =
+            `${firstPerson.name} → ${target.name}`;
+
+        document.getElementById("resultDetails").innerHTML = `
+            <div>
+                <strong>Получатель:</strong>
+                ${escapeHTML(target.name)}
+            </div>
+
+            <div>
+                <strong>Email:</strong>
+                ${escapeHTML(target.email)}
+            </div>
+
+            <div>
+                <strong>Пожелания:</strong>
+                ${escapeHTML(
+                    target.wishes ||
+                    "Не указаны"
+                )}
+            </div>
+
+            <div>
+                <strong>Дополнительно:</strong>
+                ${escapeHTML(
+                    target.extra ||
+                    "Не указано"
+                )}
+            </div>
+        `;
+
+        openModal("resultModal");
+    }
+
+    function copyInviteCode() {
+        const box = boxes.find(
+            item => item.id === currentBoxId
+        );
+
+        if (!box) {
+            return;
+        }
+
+        navigator.clipboard
+            .writeText(box.inviteCode)
+            .then(() => {
                 alert(
-                    "Сначала проведите жеребьёвку!"
+                    "Инвайт-код скопирован! 📋"
                 );
-
-                openModal("peopleModal");
-
-                return;
-            }
-
-            const current =
-                prompt(
-                    "Введите своё имя:"
-                );
-
-            if (!current) {
-                return;
-            }
-
-            const person =
-                people.find(
-                    name =>
-                        name.toLowerCase() ===
-                        current.toLowerCase()
-                );
-
-            if (!person) {
+            })
+            .catch(() => {
                 alert(
-                    "Такого участника нет!"
+                    `Код: ${box.inviteCode}`
                 );
+            });
+    }
 
-                return;
-            }
+    function deleteBox(id) {
+        const box = boxes.find(
+            item => item.id === id
+        );
 
-            const target =
-                assignments[person];
-
-            document.getElementById(
-                "resultTitle"
-            ).textContent =
-                `🎄 ${person}, твой Тайный Санта`;
-
-            document.getElementById(
-                "resultName"
-            ).textContent =
-                target;
-
-            document.getElementById(
-                "resultText"
-            ).textContent =
-                "Подготовь подарок для этого человека и никому не говори 🤫";
-
-            openModal("resultModal");
+        if (!box) {
+            return;
         }
 
-        function shuffle(array) {
-            for (
-                let i = array.length - 1;
-                i > 0;
-                i--
-            ) {
-                const j =
-                    Math.floor(
-                        Math.random() *
-                        (i + 1)
-                    );
-
-                [
-                    array[i],
-                    array[j]
-                ] = [
-                    array[j],
-                    array[i]
-                ];
-            }
-
-            return array;
-        }
-
-        function plural(
-            number,
-            one,
-            few,
-            many
+        if (
+            !confirm(
+                `Удалить коробку "${box.name}"?`
+            )
         ) {
-            const n =
-                Math.abs(number) % 100;
+            return;
+        }
 
-            const last =
-                n % 10;
+        boxes = boxes.filter(
+            item => item.id !== id
+        );
 
-            if (
-                n > 10 &&
-                n < 20
-            ) {
-                return many;
-            }
+        save();
+        renderBoxes();
+    }
 
-            if (
-                last >= 2 &&
-                last <= 4
-            ) {
-                return few;
-            }
+    function shuffle(array) {
+        const result = [...array];
 
-            if (last === 1) {
-                return one;
-            }
+        for (
+            let i = result.length - 1;
+            i > 0;
+            i--
+        ) {
+            const j = Math.floor(
+                Math.random() * (i + 1)
+            );
 
+            [
+                result[i],
+                result[j]
+            ] = [
+                result[j],
+                result[i]
+            ];
+        }
+
+        return result;
+    }
+
+    function plural(
+        number,
+        one,
+        few,
+        many
+    ) {
+        const n = Math.abs(number) % 100;
+        const n1 = n % 10;
+
+        if (n > 10 && n < 20) {
             return many;
         }
 
-        function escapeHTML(value) {
-            return String(value)
-                .replaceAll(
-                    "&",
-                    "&amp;"
-                )
-                .replaceAll(
-                    "<",
-                    "&lt;"
-                )
-                .replaceAll(
-                    ">",
-                    "&gt;"
-                )
-                .replaceAll(
-                    '"',
-                    "&quot;"
-                )
-                .replaceAll(
-                    "'",
-                    "&#039;"
-                );
+        if (n1 > 1 && n1 < 5) {
+            return few;
         }
 
-        document
-            .querySelectorAll(".modal")
-            .forEach(modal => {
-                modal.addEventListener(
-                    "click",
-                    event => {
-                        if (
-                            event.target === modal
-                        ) {
-                            modal.classList.remove(
-                                "active"
-                            );
-                        }
-                    }
-                );
-            });
+        if (n1 === 1) {
+            return one;
+        }
 
-        document.addEventListener(
-            "keydown",
-            event => {
-                if (event.key !== "Escape") {
-                    return;
-                }
+        return many;
+    }
 
+    function escapeHTML(value) {
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    document.addEventListener(
+        "click",
+        event => {
+            if (
+                event.target.classList.contains("modal")
+            ) {
+                event.target.classList.remove("active");
+            }
+        }
+    );
+
+    document.addEventListener(
+        "keydown",
+        event => {
+            if (event.key === "Escape") {
                 document
                     .querySelectorAll(".modal.active")
                     .forEach(modal => {
-                        modal.classList.remove(
-                            "active"
-                        );
+                        modal.classList.remove("active");
                     });
             }
-        );
+        }
+    );
 
-        renderBoxes();
-        renderPeople();
-    </script>
+    renderBoxes();
+</script>
 
 </body>
 </html>
