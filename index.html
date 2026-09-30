@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secret Santa 🎁</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080a12;
+            --surface: rgba(255, 255, 255, 0.06);
+            --surface-hover: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.12);
+
+            --text: #ffffff;
+            --muted: #9da3b5;
+
+            --red: #ff4d6d;
+            --red-light: #ff6b81;
+
+            --purple: #7657ff;
+            --green: #35d07f;
+            --gold: #ffd166;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(255, 77, 109, 0.18),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(118, 87, 255, 0.15),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(53, 208, 127, 0.1),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.5) 1px,
+                    transparent 1px
+                );
+
+            background-size: 85px 85px;
+
+            opacity: 0.06;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /* Header */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                rgba(8, 10, 18, 0.72);
+
+            backdrop-filter: blur(20px);
+        }
+
+        .header-inner {
+            width: min(1150px, 100%);
+
+            height: 74px;
+
+            margin: 0 auto;
+            padding: 0 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    #ff795c
+                );
+
+            box-shadow:
+                0 8px 30px
+                rgba(255, 77, 109, 0.25);
+
+            font-size: 21px;
+        }
+
+        /* Buttons */
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            min-height: 44px;
+
+            padding: 0 17px;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition:
+                transform 0.2s,
+                background 0.2s,
+                border-color 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    #ff7659
+                );
+
+            box-shadow:
+                0 10px 28px
+                rgba(255, 77, 109, 0.2);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+
+            background:
+                rgba(255, 255, 255, 0.06);
+        }
+
+        .button-secondary:hover {
+            background:
+                rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero */
+
+        .hero {
+            width: min(900px, 100%);
+
+            margin: 78px auto 0;
+            padding: 0 24px;
+
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            color: #d7d9e2;
+            font-size: 13px;
+        }
+
+        .hero-title {
+            margin-top: 22px;
+
+            font-size:
+                clamp(48px, 8vw, 82px);
+
+            line-height: 0.94;
+            letter-spacing: -5px;
+            font-weight: 900;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff4d6d,
+                    #ffd166,
+                    #35d07f,
+                    #70a1ff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            margin: 25px auto 0;
+
+            color: var(--muted);
+
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* Main */
+
+        .main {
+            width: min(1100px, 100%);
+
+            margin: 65px auto 100px;
+            padding: 0 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            margin-top: 5px;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Boxes */
+
+        .boxes {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(245px, 1fr)
+                );
+
+            gap: 20px;
+        }
+
+        .box-card {
+            position: relative;
+
+            min-height: 310px;
+
+            padding: 20px;
+
+            overflow: hidden;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.09),
+                    rgba(255, 255, 255, 0.035)
+                );
+
+            transition:
+                transform 0.3s,
+                border-color 0.3s,
+                box-shadow 0.3s;
+        }
+
+        .box-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 170px;
+            height: 170px;
+
+            right: -80px;
+            top: -80px;
+
+            border-radius: 50%;
+
+            background: var(--box-color);
+
+            opacity: 0.16;
+
+            filter: blur(25px);
+
+            pointer-events: none;
+        }
+
+        .box-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255, 255, 255, 0.22);
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 0, 0, 0.3);
+        }
+
+        .box-header {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .box-number {
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+        }
+
+        .icon-button {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            transition:
+                background 0.2s,
+                transform 0.2s;
+        }
+
+        .icon-button:hover {
+            background:
+                rgba(255, 77, 109, 0.18);
+
+            transform: scale(1.05);
+        }
+
+        /* Gift */
+
+        .gift {
+            position: relative;
+
+            width: 120px;
+            height: 108px;
+
+            margin: 27px auto 20px;
+
+            transform: rotate(-2deg);
+
+            filter:
+                drop-shadow(
+                    0 18px 20px
+                    rgba(0, 0, 0, 0.3)
+                );
+
+            transition:
+                transform 0.3s;
+        }
+
+        .box-card:hover .gift {
+            transform:
+                translateY(-5px)
+                rotate(2deg);
+        }
+
+        .gift-body {
+            position: absolute;
+
+            left: 5px;
+            bottom: 0;
+
+            width: 110px;
+            height: 70px;
+
+            border-radius:
+                5px 5px 11px 11px;
+
+            background: var(--box-color);
+        }
+
+        .gift-lid {
+            position: absolute;
+
+            left: 0;
+            top: 22px;
+
+            width: 120px;
+            height: 25px;
+
+            border-radius: 6px;
+
+            background:
+                color-mix(
+                    in srgb,
+                    var(--box-color),
+                    white 15%
+                );
+
+            z-index: 2;
+        }
+
+        .ribbon-vertical {
+            position: absolute;
+
+            left: 51px;
+            top: 21px;
+
+            width: 18px;
+            height: 82px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            z-index: 3;
+        }
+
+        .ribbon-horizontal {
+            position: absolute;
+
+            left: 0;
+            top: 29px;
+
+            width: 120px;
+            height: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            z-index: 4;
+        }
+
+        .bow {
+            position: absolute;
+
+            left: 43px;
+            top: 7px;
+
+            z-index: 5;
+
+            font-size: 30px;
+        }
+
+        .box-name {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .box-description {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 6px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        .box-open {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+
+            margin-top: 18px;
+            padding: 11px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            transition:
+                background 0.2s;
+        }
+
+        .box-open:hover {
+            background:
+                rgba(255, 255, 255, 0.12);
+        }
+
+        /* Add card */
+
+        .add-card {
+            min-height: 310px;
+
+            display: grid;
+            place-items: center;
+
+            border:
+                2px dashed
+                rgba(255, 255, 255, 0.12);
+
+            border-radius: 24px;
+
+            cursor: pointer;
+
+            transition:
+                background 0.25s,
+                border-color 0.25s,
+                transform 0.25s;
+        }
+
+        .add-card:hover {
+            border-color: var(--red);
+
+            background:
+                rgba(255, 77, 109, 0.035);
+
+            transform: translateY(-4px);
+        }
+
+        .add-content {
+            text-align: center;
+        }
+
+        .add-icon {
+            width: 64px;
+            height: 64px;
+
+            display: grid;
+            place-items: center;
+
+            margin: 0 auto 15px;
+
+            border-radius: 19px;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            font-size: 30px;
+        }
+
+        .add-title {
+            font-weight: 800;
+        }
+
+        .add-description {
+            margin-top: 6px;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Participants */
+
+        .participants {
+            margin-top: 55px;
+            padding: 25px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 24px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+        }
+
+        .participants-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 12px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--purple)
+                );
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .remove-person {
+            display: grid;
+            place-items: center;
+
+            width: 22px;
+            height: 22px;
+
+            border-radius: 50%;
+
+            background: transparent;
+
+            color: #858999;
+
+            transition:
+                color 0.2s,
+                background 0.2s;
+        }
+
+        .remove-person:hover {
+            color: var(--red);
+
+            background:
+                rgba(255, 77, 109, 0.1);
+        }
+
+        /* Empty */
+
+        .empty {
+            grid-column: 1 / -1;
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            color: var(--muted);
+        }
+
+        .empty-icon {
+            margin-bottom: 14px;
+
+            font-size: 55px;
+        }
+
+        .empty h2 {
+            color: var(--text);
+
+            font-size: 22px;
+        }
+
+        .empty p {
+            margin-top: 7px;
+
+            font-size: 14px;
+        }
+
+        /* Modal */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            z-index: 100;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0, 0, 0, 0.72);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(500px, 100%);
+
+            padding: 28px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 26px;
+
+            background:
+                #111522;
+
+            box-shadow:
+                0 40px 100px
+                rgba(0, 0, 0, 0.55);
+
+            animation:
+                modal-in 0.25s ease;
+        }
+
+        @keyframes modal-in {
+            from {
+                opacity: 0;
+                transform:
+                    translateY(18px)
+                    scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            font-size: 20px;
+        }
+
+        .modal-close:hover {
+            background:
+                rgba(255, 255, 255, 0.1);
+        }
+
+        .field {
+            margin-top: 17px;
+        }
+
+        .field:first-of-type {
+            margin-top: 0;
+        }
+
+        .field-label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #c9ccda;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input,
+        .textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            outline: none;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            color: white;
+
+            transition:
+                border-color 0.2s,
+                background 0.2s;
+        }
+
+        .input:focus,
+        .textarea:focus {
+            border-color:
+                rgba(255, 77, 109, 0.7);
+
+            background:
+                rgba(255, 255, 255, 0.075);
+        }
+
+        .textarea {
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color-option {
+            width: 35px;
+            height: 35px;
+
+            border: 3px solid transparent;
+
+            border-radius: 50%;
+
+            transition:
+                transform 0.2s,
+                border-color 0.2s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.08);
+        }
+
+        .color-option.selected {
+            border-color: white;
+            transform: scale(1.1);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .modal-actions .button {
+            flex: 1;
+        }
+
+        /* People modal */
+
+        .add-person-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .add-person-row .input {
+            min-width: 0;
+        }
+
+        .modal-people {
+            margin-top: 20px;
+        }
+
+        .modal-person {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+            padding: 8px 10px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+        }
+
+        .modal-person-info {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .draw-button {
+            width: 100%;
+
+            margin-top: 18px;
+        }
+
+        /* Result */
+
+        .result {
+            text-align: center;
+        }
+
+        .result-gift {
+            margin: 15px 0 20px;
+
+            font-size: 78px;
+
+            animation:
+                gift-float 2s
+                ease-in-out infinite;
+        }
+
+        @keyframes gift-float {
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(-3deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-9px)
+                    rotate(3deg);
+            }
+        }
+
+        .result-title {
+            font-size: 26px;
+        }
+
+        .result-name {
+            margin: 14px 0;
+
+            font-size: 38px;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--red),
+                    var(--gold)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .result-description {
+            color: var(--muted);
+
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 650px) {
+            .header-inner {
+                padding: 0 15px;
+            }
+
+            .hero {
+                margin-top: 50px;
+            }
+
+            .hero-title {
+                letter-spacing: -3px;
+            }
+
+            .main {
+                margin-top: 50px;
+                padding: 0 15px;
+            }
+
+            .section-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .section-header > .button {
+                width: 100%;
+            }
+
+            .boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .participants {
+                padding: 20px;
+            }
+
+            .participants .section-header {
+                flex-direction: row;
+            }
+
+            .modal-content {
+                padding: 22px;
+            }
+
+            .add-person-row {
+                flex-direction: column;
+            }
+
+            .add-person-row .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+
+            <div class="logo">
+                <div class="logo-icon">
+                    🎁
+                </div>
+
+                <span>
+                    Secret Santa
+                </span>
+            </div>
+
+            <button
+                class="button button-secondary"
+                onclick="openParticipants()"
+            >
+                👥 Участники
+            </button>
+
+        </div>
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            🎄 Праздничный генератор подарков
+        </div>
+
+        <h1 class="hero-title">
+            Тайный<br>
+            <span class="gradient-text">
+                Санта
+            </span>
+        </h1>
+
+        <p class="hero-description">
+            Создавайте праздничные коробки,
+            добавляйте друзей и устраивайте
+            свою собственную тайную раздачу подарков.
+        </p>
+
+    </section>
+
+    <main class="main">
+
+        <div class="section-header">
+
+            <div>
+                <h2 class="section-title">
+                    🎁 Твои коробки
+                </h2>
+
+                <p
+                    class="section-subtitle"
+                    id="boxCounter"
+                >
+                    0 коробок
+                </p>
+            </div>
+
+            <button
+                class="button button-primary"
+                onclick="openCreate()"
+            >
+                ＋ Создать коробку
+            </button>
+
+        </div>
+
+        <div
+            class="boxes"
+            id="boxes"
+        ></div>
+
+        <section class="participants">
+
+            <div class="section-header">
+
+                <div>
+                    <h2 class="section-title">
+                        👥 Участники
+                    </h2>
+
+                    <p
+                        class="section-subtitle"
+                        id="peopleCounter"
+                    >
+                        0 участников
+                    </p>
+                </div>
+
+                <button
+                    class="button button-secondary"
+                    onclick="openParticipants()"
+                >
+                    Управление
+                </button>
+
+            </div>
+
+            <div
+                class="participants-list"
+                id="participantsList"
+            ></div>
+
+        </section>
+
+    </main>
+
+    <div
+        class="modal"
+        id="createModal"
+    >
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">
+                    🎁 Новая коробка
+                </h2>
+
+                <button
+                    class="modal-close"
+                    onclick="closeModal('createModal')"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="field">
+
+                <label class="field-label">
+                    Название
+                </label>
+
+                <input
+                    class="input"
+                    id="boxName"
+                    type="text"
+                    placeholder="Например: Новый год 2026"
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label class="field-label">
+                    Описание
+                </label>
+
+                <textarea
+                    class="textarea"
+                    id="boxDescription"
+                    placeholder="Например: Подарки до 2000 ₽"
+                ></textarea>
+
+            </div>
+
+            <div class="field">
+
+                <label class="field-label">
+                    Цвет коробки
+                </label>
+
+                <div class="color-picker">
+
+                    <button
+                        class="color-option selected"
+                        style="background: #ff4d6d"
+                        data-color="#ff4d6d"
+                        onclick="selectColor(this)"
+                    ></button>
+
+                    <button
+                        class="color-option"
+                        style="background: #35d07f"
+                        data-color="#35d07f"
+                        onclick="selectColor(this)"
+                    ></button>
+
+                    <button
+                        class="color-option"
+                        style="background: #5c7cff"
+                        data-color="#5c7cff"
+                        onclick="selectColor(this)"
+                    ></button>
+
+                    <button
+                        class="color-option"
+                        style="background: #a855f7"
+                        data-color="#a855f7"
+                        onclick="selectColor(this)"
+                    ></button>
+
+                    <button
+                        class="color-option"
+                        style="background: #f59e0b"
+                        data-color="#f59e0b"
+                        onclick="selectColor(this)"
+                    ></button>
+
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    class="button button-secondary"
+                    onclick="closeModal('createModal')"
+                >
+                    Отмена
+                </button>
+
+                <button
+                    class="button button-primary"
+                    onclick="createBox()"
+                >
+                    Создать 🎁
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div
+        class="modal"
+        id="peopleModal"
+    >
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">
+                    👥 Участники
+                </h2>
+
+                <button
+                    class="modal-close"
+                    onclick="closeModal('peopleModal')"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="field">
+
+                <label class="field-label">
+                    Имя участника
+                </label>
+
+                <div class="add-person-row">
+
+                    <input
+                        class="input"
+                        id="personName"
+                        type="text"
+                        placeholder="Например: Илья"
+                        onkeydown="
+                            if (event.key === 'Enter') {
+                                addPerson();
+                            }
+                        "
+                    >
+
+                    <button
+                        class="button button-primary"
+                        onclick="addPerson()"
+                    >
+                        Добавить
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div
+                class="modal-people"
+                id="modalPeople"
+            ></div>
+
+            <button
+                class="button button-primary draw-button"
+                onclick="runSanta()"
+            >
+                🎲 Провести жеребьёвку
+            </button>
+
+        </div>
+    </div>
+
+    <div
+        class="modal"
+        id="resultModal"
+    >
+        <div class="modal-content result">
+
+            <button
+                class="modal-close"
+                style="margin-left: auto;"
+                onclick="closeModal('resultModal')"
+            >
+                ×
+            </button>
+
+            <div class="result-gift">
+                🎁
+            </div>
+
+            <h2
+                class="result-title"
+                id="resultTitle"
+            >
+                Твой Тайный Санта
+            </h2>
+
+            <div
+                class="result-name"
+                id="resultName"
+            >
+                —
+            </div>
+
+            <p
+                class="result-description"
+                id="resultText"
+            >
+                Здесь появится результат жеребьёвки.
+            </p>
+
+            <button
+                class="button button-primary draw-button"
+                onclick="closeModal('resultModal')"
+            >
+                Понятно
+            </button>
+
+        </div>
+    </div>
+
+    <script>
+        let boxes =
+            JSON.parse(
+                localStorage.getItem("secretSantaBoxes")
+            ) || [];
+
+        let people =
+            JSON.parse(
+                localStorage.getItem("secretSantaPeople")
+            ) || [];
+
+        let assignments =
+            JSON.parse(
+                localStorage.getItem(
+                    "secretSantaAssignments"
+                )
+            ) || {};
+
+        let selectedColor = "#ff4d6d";
+
+        function save() {
+            localStorage.setItem(
+                "secretSantaBoxes",
+                JSON.stringify(boxes)
+            );
+
+            localStorage.setItem(
+                "secretSantaPeople",
+                JSON.stringify(people)
+            );
+
+            localStorage.setItem(
+                "secretSantaAssignments",
+                JSON.stringify(assignments)
+            );
+        }
+
+        function openModal(id) {
+            document
+                .getElementById(id)
+                .classList.add("active");
+        }
+
+        function closeModal(id) {
+            document
+                .getElementById(id)
+                .classList.remove("active");
+        }
+
+        function openCreate() {
+            document.getElementById(
+                "boxName"
+            ).value = "";
+
+            document.getElementById(
+                "boxDescription"
+            ).value = "";
+
+            selectedColor = "#ff4d6d";
+
+            document
+                .querySelectorAll(".color-option")
+                .forEach(option => {
+                    option.classList.remove(
+                        "selected"
+                    );
+                });
+
+            document
+                .querySelector(".color-option")
+                .classList.add("selected");
+
+            openModal("createModal");
+        }
+
+        function openParticipants() {
+            renderModalPeople();
+            openModal("peopleModal");
+        }
+
+        function selectColor(element) {
+            document
+                .querySelectorAll(".color-option")
+                .forEach(option => {
+                    option.classList.remove(
+                        "selected"
+                    );
+                });
+
+            element.classList.add("selected");
+
+            selectedColor =
+                element.dataset.color;
+        }
+
+        function createBox() {
+            const name =
+                document
+                    .getElementById("boxName")
+                    .value
+                    .trim();
+
+            const description =
+                document
+                    .getElementById("boxDescription")
+                    .value
+                    .trim();
+
+            if (!name) {
+                alert(
+                    "Введите название коробки!"
+                );
+
+                return;
+            }
+
+            boxes.push({
+                id: Date.now(),
+                name,
+                description,
+                color: selectedColor
+            });
+
+            save();
+
+            closeModal("createModal");
+
+            renderBoxes();
+        }
+
+        function deleteBox(id) {
+            if (
+                !confirm(
+                    "Удалить эту коробку?"
+                )
+            ) {
+                return;
+            }
+
+            boxes =
+                boxes.filter(
+                    box => box.id !== id
+                );
+
+            save();
+
+            renderBoxes();
+        }
+
+        function renderBoxes() {
+            const container =
+                document.getElementById("boxes");
+
+            document.getElementById(
+                "boxCounter"
+            ).textContent =
+                `${boxes.length} ${plural(
+                    boxes.length,
+                    "коробка",
+                    "коробки",
+                    "коробок"
+                )}`;
+
+            container.innerHTML = "";
+
+            if (boxes.length === 0) {
+                container.innerHTML = `
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            🎁
+                        </div>
+
+                        <h2>
+                            Пока здесь пусто
+                        </h2>
+
+                        <p>
+                            Создай первую коробку
+                            для Тайного Санты
+                        </p>
+
+                    </div>
+                `;
+
+                return;
+            }
+
+            boxes.forEach(
+                (box, index) => {
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+                    card.className =
+                        "box-card";
+
+                    card.style.setProperty(
+                        "--box-color",
+                        box.color
+                    );
+
+                    card.innerHTML = `
+                        <div class="box-header">
+
+                            <span class="box-number">
+                                КОРОБКА #${index + 1}
+                            </span>
+
+                            <button
+                                class="icon-button"
+                                onclick="deleteBox(${box.id})"
+                                aria-label="Удалить"
+                            >
+                                🗑️
+                            </button>
+
+                        </div>
+
+                        <div class="gift">
+
+                            <div class="bow">
+                                🎀
+                            </div>
+
+                            <div class="gift-lid"></div>
+
+                            <div class="gift-body"></div>
+
+                            <div class="ribbon-vertical"></div>
+
+                            <div class="ribbon-horizontal"></div>
+
+                        </div>
+
+                        <h3 class="box-name">
+                            ${escapeHTML(box.name)}
+                        </h3>
+
+                        <p class="box-description">
+                            ${escapeHTML(
+                                box.description ||
+                                "Праздничная коробка"
+                            )}
+                        </p>
+
+                        <button
+                            class="box-open"
+                            onclick="openBox(${box.id})"
+                        >
+                            Открыть коробку →
+                        </button>
+                    `;
+
+                    container.appendChild(card);
+                }
+            );
+
+            const addCard =
+                document.createElement("div");
+
+            addCard.className =
+                "add-card";
+
+            addCard.onclick = openCreate;
+
+            addCard.innerHTML = `
+                <div class="add-content">
+
+                    <div class="add-icon">
+                        ＋
+                    </div>
+
+                    <div class="add-title">
+                        Новая коробка
+                    </div>
+
+                    <div class="add-description">
+                        Создать ещё одну
+                    </div>
+
+                </div>
+            `;
+
+            container.appendChild(addCard);
+        }
+
+        function addPerson() {
+            const input =
+                document.getElementById(
+                    "personName"
+                );
+
+            const name =
+                input.value.trim();
+
+            if (!name) {
+                return;
+            }
+
+            const exists =
+                people.some(
+                    person =>
+                        person.toLowerCase() ===
+                        name.toLowerCase()
+                );
+
+            if (exists) {
+                alert(
+                    "Такой участник уже есть!"
+                );
+
+                return;
+            }
+
+            people.push(name);
+
+            input.value = "";
+
+            assignments = {};
+
+            save();
+
+            renderPeople();
+            renderModalPeople();
+        }
+
+        function removePerson(index) {
+            people.splice(index, 1);
+
+            assignments = {};
+
+            save();
+
+            renderPeople();
+            renderModalPeople();
+        }
+
+        function renderPeople() {
+            const container =
+                document.getElementById(
+                    "participantsList"
+                );
+
+            document.getElementById(
+                "peopleCounter"
+            ).textContent =
+                `${people.length} ${plural(
+                    people.length,
+                    "участник",
+                    "участника",
+                    "участников"
+                )}`;
+
+            container.innerHTML = "";
+
+            if (people.length === 0) {
+                container.innerHTML = `
+                    <p class="section-subtitle">
+                        Пока никто не добавлен
+                    </p>
+                `;
+
+                return;
+            }
+
+            people.forEach(person => {
+                const element =
+                    document.createElement(
+                        "div"
+                    );
+
+                element.className =
+                    "person";
+
+                element.innerHTML = `
+                    <div class="avatar">
+                        ${escapeHTML(
+                            person[0].toUpperCase()
+                        )}
+                    </div>
+
+                    <span>
+                        ${escapeHTML(person)}
+                    </span>
+                `;
+
+                container.appendChild(element);
+            });
+        }
+
+        function renderModalPeople() {
+            const container =
+                document.getElementById(
+                    "modalPeople"
+                );
+
+            container.innerHTML = "";
+
+            if (people.length === 0) {
+                container.innerHTML = `
+                    <p class="section-subtitle">
+                        Добавьте участников выше
+                    </p>
+                `;
+
+                return;
+            }
+
+            people.forEach(
+                (person, index) => {
+                    const element =
+                        document.createElement(
+                            "div"
+                        );
+
+                    element.className =
+                        "modal-person";
+
+                    element.innerHTML = `
+                        <div class="modal-person-info">
+
+                            <div class="avatar">
+                                ${escapeHTML(
+                                    person[0]
+                                        .toUpperCase()
+                                )}
+                            </div>
+
+                            <span>
+                                ${escapeHTML(person)}
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="remove-person"
+                            onclick="removePerson(${index})"
+                            aria-label="Удалить участника"
+                        >
+                            ✕
+                        </button>
+                    `;
+
+                    container.appendChild(element);
+                }
+            );
+        }
+
+        function runSanta() {
+            if (people.length < 2) {
+                alert(
+                    "Нужно минимум 2 участника!"
+                );
+
+                return;
+            }
+
+            let shuffled;
+            let attempts = 0;
+
+            do {
+                shuffled = [...people];
+
+                shuffle(shuffled);
+
+                attempts++;
+            }
+            while (
+                shuffled.some(
+                    (person, index) =>
+                        person === people[index]
+                ) &&
+                attempts < 1000
+            );
+
+            if (
+                shuffled.some(
+                    (person, index) =>
+                        person === people[index]
+                )
+            ) {
+                alert(
+                    "Не удалось провести жеребьёвку. Попробуйте ещё раз."
+                );
+
+                return;
+            }
+
+            assignments = {};
+
+            people.forEach(
+                (person, index) => {
+                    assignments[person] =
+                        shuffled[index];
+                }
+            );
+
+            save();
+
+            closeModal("peopleModal");
+
+            alert(
+                "🎉 Жеребьёвка завершена!"
+            );
+        }
+
+        function openBox(id) {
+            if (people.length < 2) {
+                openModal("peopleModal");
+                return;
+            }
+
+            if (
+                Object.keys(assignments)
+                    .length === 0
+            ) {
+                alert(
+                    "Сначала проведите жеребьёвку!"
+                );
+
+                openModal("peopleModal");
+
+                return;
+            }
+
+            const current =
+                prompt(
+                    "Введите своё имя:"
+                );
+
+            if (!current) {
+                return;
+            }
+
+            const person =
+                people.find(
+                    name =>
+                        name.toLowerCase() ===
+                        current.toLowerCase()
+                );
+
+            if (!person) {
+                alert(
+                    "Такого участника нет!"
+                );
+
+                return;
+            }
+
+            const target =
+                assignments[person];
+
+            document.getElementById(
+                "resultTitle"
+            ).textContent =
+                `🎄 ${person}, твой Тайный Санта`;
+
+            document.getElementById(
+                "resultName"
+            ).textContent =
+                target;
+
+            document.getElementById(
+                "resultText"
+            ).textContent =
+                "Подготовь подарок для этого человека и никому не говори 🤫";
+
+            openModal("resultModal");
+        }
+
+        function shuffle(array) {
+            for (
+                let i = array.length - 1;
+                i > 0;
+                i--
+            ) {
+                const j =
+                    Math.floor(
+                        Math.random() *
+                        (i + 1)
+                    );
+
+                [
+                    array[i],
+                    array[j]
+                ] = [
+                    array[j],
+                    array[i]
+                ];
+            }
+
+            return array;
+        }
+
+        function plural(
+            number,
+            one,
+            few,
+            many
+        ) {
+            const n =
+                Math.abs(number) % 100;
+
+            const last =
+                n % 10;
+
+            if (
+                n > 10 &&
+                n < 20
+            ) {
+                return many;
+            }
+
+            if (
+                last >= 2 &&
+                last <= 4
+            ) {
+                return few;
+            }
+
+            if (last === 1) {
+                return one;
+            }
+
+            return many;
+        }
+
+        function escapeHTML(value) {
+            return String(value)
+                .replaceAll(
+                    "&",
+                    "&amp;"
+                )
+                .replaceAll(
+                    "<",
+                    "&lt;"
+                )
+                .replaceAll(
+                    ">",
+                    "&gt;"
+                )
+                .replaceAll(
+                    '"',
+                    "&quot;"
+                )
+                .replaceAll(
+                    "'",
+                    "&#039;"
+                );
+        }
+
+        document
+            .querySelectorAll(".modal")
+            .forEach(modal => {
+                modal.addEventListener(
+                    "click",
+                    event => {
+                        if (
+                            event.target === modal
+                        ) {
+                            modal.classList.remove(
+                                "active"
+                            );
+                        }
+                    }
+                );
+            });
+
+        document.addEventListener(
+            "keydown",
+            event => {
+                if (event.key !== "Escape") {
+                    return;
+                }
+
+                document
+                    .querySelectorAll(".modal.active")
+                    .forEach(modal => {
+                        modal.classList.remove(
+                            "active"
+                        );
+                    });
+            }
+        );
+
+        renderBoxes();
+        renderPeople();
+    </script>
+
+</body>
+</html>
