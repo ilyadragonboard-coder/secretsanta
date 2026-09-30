@@ -18,8 +18,16 @@
             font-family: Arial, sans-serif;
             color: #fff;
             background:
-                radial-gradient(circle at 15% 20%, rgba(255, 77, 109, 0.18), transparent 30%),
-                radial-gradient(circle at 85% 10%, rgba(120, 90, 255, 0.2), transparent 30%),
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255, 77, 109, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(120, 90, 255, 0.2),
+                    transparent 30%
+                ),
                 #080912;
         }
 
@@ -41,7 +49,7 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-            background: rgba(8, 9, 18, 0.7);
+            background: rgba(8, 9, 18, 0.75);
             backdrop-filter: blur(20px);
             position: sticky;
             top: 0;
@@ -93,6 +101,11 @@
 
         .btn-primary:hover {
             opacity: 0.9;
+        }
+
+        .btn-danger {
+            color: #ff7186;
+            background: rgba(255, 77, 109, 0.08);
         }
 
         .hero {
@@ -163,13 +176,16 @@
 
         .boxes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
             gap: 18px;
         }
 
         .box {
             padding: 22px;
-            min-height: 220px;
+            min-height: 230px;
             border-radius: 24px;
             position: relative;
             overflow: hidden;
@@ -198,17 +214,20 @@
         .box-icon {
             font-size: 42px;
             margin-bottom: 15px;
+            position: relative;
         }
 
         .box h3 {
             font-size: 21px;
             margin-bottom: 8px;
+            position: relative;
         }
 
         .box-description {
             color: #999baa;
             min-height: 42px;
             line-height: 1.5;
+            position: relative;
         }
 
         .box-info {
@@ -216,6 +235,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            position: relative;
         }
 
         .tag {
@@ -226,10 +246,16 @@
             font-size: 12px;
         }
 
+        .code-tag {
+            color: #ff8ca0;
+            background: rgba(255, 77, 109, 0.1);
+        }
+
         .box-actions {
             display: flex;
             gap: 8px;
             margin-top: 18px;
+            position: relative;
         }
 
         .box-actions .btn {
@@ -237,6 +263,7 @@
         }
 
         .empty {
+            grid-column: 1 / -1;
             padding: 50px 20px;
             text-align: center;
             color: #8d8f9f;
@@ -351,21 +378,48 @@
             flex: 1;
         }
 
-        .invite-code {
-            margin: 18px 0;
+        .invite-box {
             padding: 20px;
+            margin-bottom: 20px;
             text-align: center;
             border-radius: 18px;
-            background: rgba(255, 255, 255, 0.06);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 77, 109, 0.1),
+                    rgba(139, 92, 246, 0.1)
+                );
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .invite-code span {
-            display: block;
-            margin-top: 8px;
+        .invite-label {
+            color: #9294a4;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .invite-code {
             font-size: 30px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 3px;
-            color: #ff6b81;
+            color: #ff7186;
+        }
+
+        .invite-hint {
+            margin-top: 10px;
+            color: #777989;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .join-info {
+            padding: 15px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: #bdb8d9;
+            line-height: 1.5;
         }
 
         .people-list {
@@ -384,31 +438,29 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .person-name {
-            font-weight: 700;
+        .person-main {
+            min-width: 0;
         }
 
-        .person-email {
+        .person-name {
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .person-wishes {
             color: #858796;
             font-size: 12px;
-            margin-top: 3px;
+            margin-top: 5px;
+            line-height: 1.4;
+            word-break: break-word;
         }
 
         .delete-btn {
+            flex-shrink: 0;
             padding: 8px 10px;
             border-radius: 9px;
             color: #ff7a8d;
             background: rgba(255, 77, 109, 0.1);
-        }
-
-        .join-info {
-            padding: 15px;
-            margin-bottom: 18px;
-            border-radius: 14px;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            color: #bdb8d9;
-            line-height: 1.5;
         }
 
         .result {
@@ -425,17 +477,23 @@
             margin-bottom: 10px;
         }
 
+        .result-subtitle {
+            color: #999baa;
+            line-height: 1.5;
+        }
+
         .result-name {
             margin: 20px 0;
             padding: 18px;
             border-radius: 16px;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 77, 109, 0.15),
-                rgba(139, 92, 246, 0.15)
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 77, 109, 0.15),
+                    rgba(139, 92, 246, 0.15)
+                );
         }
 
         .result-details {
@@ -448,6 +506,7 @@
         .result-details div {
             margin-bottom: 12px;
             color: #b4b5c2;
+            line-height: 1.5;
         }
 
         .result-details div:last-child {
@@ -457,6 +516,15 @@
         .santa-btn {
             width: 100%;
             margin-top: 15px;
+        }
+
+        .success-code {
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 11px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #aaa;
+            font-size: 12px;
         }
 
         @media (max-width: 650px) {
@@ -479,6 +547,11 @@
             .modal-card {
                 padding: 21px;
             }
+
+            .section-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -486,99 +559,163 @@
 <body>
 
 <header class="header">
+
     <div class="logo">
         <div class="logo-icon">🎁</div>
         Secret Santa
     </div>
 
     <div class="header-actions">
-        <button class="btn" onclick="openJoinModal()">
-            Войти по коду
+
+        <button
+            class="btn"
+            onclick="openJoinModal()"
+        >
+            🔑 Войти по коду
         </button>
 
-        <button class="btn btn-primary" onclick="openCreateModal()">
+        <button
+            class="btn btn-primary"
+            onclick="openCreateModal()"
+        >
             + Создать коробку
         </button>
+
     </div>
+
 </header>
 
+
 <section class="hero">
+
     <div class="hero-content">
-        <div class="badge">🎄 Тайный Санта для друзей</div>
+
+        <div class="badge">
+            🎄 Тайный Санта для друзей
+        </div>
 
         <h1>
             Создавай.
-            <span class="gradient-text">Приглашай.</span>
+            <span class="gradient-text">
+                Приглашай.
+            </span>
             Жеребьуй.
         </h1>
 
         <p>
-            Создай коробку, получи уникальный инвайт-код и отправь его друзьям.
-            Каждый сможет присоединиться без регистрации.
+            Создай коробку, получи уникальный инвайт-код
+            и отправь его друзьям. Никаких регистраций —
+            только ник и пожелания.
         </p>
 
         <div class="hero-actions">
-            <button class="btn btn-primary" onclick="openCreateModal()">
+
+            <button
+                class="btn btn-primary"
+                onclick="openCreateModal()"
+            >
                 🎁 Создать коробку
             </button>
 
-            <button class="btn" onclick="openJoinModal()">
+            <button
+                class="btn"
+                onclick="openJoinModal()"
+            >
                 🔑 Ввести инвайт-код
             </button>
+
         </div>
+
     </div>
+
 </section>
+
 
 <main class="main">
 
     <div class="section-header">
-        <h2>Мои коробки</h2>
 
-        <button class="btn" onclick="openCreateModal()">
+        <h2>
+            Мои коробки
+        </h2>
+
+        <button
+            class="btn"
+            onclick="openCreateModal()"
+        >
             + Новая коробка
         </button>
+
     </div>
 
-    <div class="boxes" id="boxes"></div>
+    <div
+        class="boxes"
+        id="boxes"
+    ></div>
 
 </main>
 
 
-<div class="modal" id="createModal">
+<div
+    class="modal"
+    id="createModal"
+>
+
     <div class="modal-card">
 
         <div class="modal-header">
-            <h2>Создать коробку</h2>
 
-            <button class="close" onclick="closeModal('createModal')">
+            <h2>
+                Создать коробку
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal('createModal')"
+            >
                 ✕
             </button>
+
         </div>
 
         <div class="form-group">
-            <label>Название</label>
+
+            <label>
+                Название коробки
+            </label>
 
             <input
                 class="input"
                 id="boxName"
                 placeholder="Например: Secret Santa 2026"
+                maxlength="50"
             >
+
         </div>
 
         <div class="form-group">
-            <label>Описание</label>
+
+            <label>
+                Описание
+            </label>
 
             <textarea
                 class="textarea"
                 id="boxDescription"
-                placeholder="Например: Дарим подарки до 3000₽"
+                placeholder="Например: Подарки до 3000 ₽"
+                maxlength="300"
             ></textarea>
+
         </div>
 
         <div class="form-group">
-            <label>Цвет</label>
+
+            <label>
+                Цвет коробки
+            </label>
 
             <div class="colors">
+
                 <button
                     class="color selected"
                     style="background:#ff4d6d"
@@ -608,10 +745,13 @@
                     style="background:#f59e0b"
                     onclick="selectColor('#f59e0b', this)"
                 ></button>
+
             </div>
+
         </div>
 
         <div class="modal-footer">
+
             <button
                 class="btn"
                 onclick="closeModal('createModal')"
@@ -623,41 +763,123 @@
                 class="btn btn-primary"
                 onclick="createBox()"
             >
-                Создать
+                Создать коробку
             </button>
+
         </div>
 
     </div>
+
 </div>
 
 
-<div class="modal" id="joinModal">
+<div
+    class="modal"
+    id="createdModal"
+>
+
     <div class="modal-card">
 
         <div class="modal-header">
-            <h2>Войти в коробку</h2>
 
-            <button class="close" onclick="closeModal('joinModal')">
+            <h2>
+                🎉 Коробка создана!
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal('createdModal')"
+            >
                 ✕
             </button>
+
+        </div>
+
+        <div class="invite-box">
+
+            <div class="invite-label">
+                Твой инвайт-код
+            </div>
+
+            <div
+                class="invite-code"
+                id="createdInviteCode"
+            ></div>
+
+            <div class="invite-hint">
+                Отправь этот код друзьям.
+                Они введут его на сайте и смогут
+                присоединиться к коробке.
+            </div>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            style="width:100%;"
+            onclick="copyCreatedCode()"
+        >
+            📋 Скопировать инвайт-код
+        </button>
+
+        <button
+            class="btn"
+            style="width:100%; margin-top:10px;"
+            onclick="openCreatedBox()"
+        >
+            Открыть коробку
+        </button>
+
+    </div>
+
+</div>
+
+
+<div
+    class="modal"
+    id="joinModal"
+>
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2>
+                Войти по коду
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal('joinModal')"
+            >
+                ✕
+            </button>
+
         </div>
 
         <div class="join-info">
-            🔑 Введи инвайт-код, который дал тебе организатор.
+            🔑 Введи инвайт-код коробки,
+            который тебе отправил организатор.
         </div>
 
         <div class="form-group">
-            <label>Инвайт-код</label>
+
+            <label>
+                Инвайт-код
+            </label>
 
             <input
                 class="input"
                 id="inviteInput"
-                placeholder="Например SANTA-7K42"
+                placeholder="SANTA-7K42"
+                maxlength="10"
                 autocomplete="off"
             >
+
         </div>
 
         <div class="modal-footer">
+
             <button
                 class="btn"
                 onclick="closeModal('joinModal')"
@@ -671,17 +893,26 @@
             >
                 Найти коробку
             </button>
+
         </div>
 
     </div>
+
 </div>
 
 
-<div class="modal" id="participantModal">
+<div
+    class="modal"
+    id="participantModal"
+>
+
     <div class="modal-card">
 
         <div class="modal-header">
-            <h2>Присоединиться</h2>
+
+            <h2>
+                Присоединиться
+            </h2>
 
             <button
                 class="close"
@@ -689,52 +920,50 @@
             >
                 ✕
             </button>
+
         </div>
 
-        <div class="join-info" id="joinBoxInfo"></div>
+        <div
+            class="join-info"
+            id="joinBoxInfo"
+        ></div>
 
         <div class="form-group">
-            <label>Твоё имя</label>
+
+            <label>
+                Ник
+            </label>
 
             <input
                 class="input"
-                id="participantName"
-                placeholder="Например, Илья"
+                id="participantNickname"
+                placeholder="Например: Ilya"
+                maxlength="30"
+                autocomplete="off"
             >
+
         </div>
 
         <div class="form-group">
-            <label>Email</label>
 
-            <input
-                class="input"
-                id="participantEmail"
-                type="email"
-                placeholder="example@mail.com"
-            >
-        </div>
-
-        <div class="form-group">
-            <label>Пожелания к подарку</label>
+            <label>
+                Пожелания
+                <span style="color:#666;">
+                    (необязательно)
+                </span>
+            </label>
 
             <textarea
                 class="textarea"
                 id="participantWishes"
-                placeholder="Например: LEGO, игры, книги..."
+                placeholder="Например: люблю игры, LEGO, книги..."
+                maxlength="500"
             ></textarea>
-        </div>
 
-        <div class="form-group">
-            <label>Дополнительно</label>
-
-            <textarea
-                class="textarea"
-                id="participantExtra"
-                placeholder="Любимые цвета, хобби и т.д."
-            ></textarea>
         </div>
 
         <div class="modal-footer">
+
             <button
                 class="btn"
                 onclick="closeModal('participantModal')"
@@ -748,27 +977,50 @@
             >
                 🎁 Присоединиться
             </button>
+
         </div>
 
     </div>
+
 </div>
 
 
-<div class="modal" id="boxModal">
+<div
+    class="modal"
+    id="boxModal"
+>
+
     <div class="modal-card">
 
         <div class="modal-header">
+
             <h2 id="boxModalTitle"></h2>
 
-            <button class="close" onclick="closeModal('boxModal')">
+            <button
+                class="close"
+                onclick="closeModal('boxModal')"
+            >
                 ✕
             </button>
+
         </div>
 
-        <div class="invite-code">
-            Инвайт-код
+        <div class="invite-box">
 
-            <span id="boxInviteCode"></span>
+            <div class="invite-label">
+                Инвайт-код этой коробки
+            </div>
+
+            <div
+                class="invite-code"
+                id="boxInviteCode"
+            ></div>
+
+            <div class="invite-hint">
+                Скинь этот код друзьям,
+                чтобы они смогли присоединиться.
+            </div>
+
         </div>
 
         <button
@@ -788,12 +1040,16 @@
                 align-items:center;
             "
         >
-            <h3>Участники</h3>
+
+            <h3>
+                Участники
+            </h3>
 
             <span
                 class="tag"
                 id="peopleCount"
             ></span>
+
         </div>
 
         <div
@@ -816,10 +1072,15 @@
         </button>
 
     </div>
+
 </div>
 
 
-<div class="modal" id="resultModal">
+<div
+    class="modal"
+    id="resultModal"
+>
+
     <div class="modal-card">
 
         <div class="result">
@@ -828,10 +1089,12 @@
                 🎉
             </div>
 
-            <h2>Жеребьёвка завершена!</h2>
+            <h2>
+                Жеребьёвка завершена!
+            </h2>
 
-            <p style="color:#999baa; margin-top:10px;">
-                Результаты сохранены.
+            <p class="result-subtitle">
+                Твой результат:
             </p>
 
             <div
@@ -854,6 +1117,7 @@
         </div>
 
     </div>
+
 </div>
 
 
@@ -865,6 +1129,7 @@
     let selectedColor = "#ff4d6d";
     let currentJoinBoxId = null;
     let currentBoxId = null;
+    let createdBoxId = null;
 
     function save() {
         localStorage.setItem(
@@ -886,13 +1151,16 @@
     }
 
     function generateInviteCode() {
-        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        const characters =
+            "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
         let code = "SANTA-";
 
         for (let i = 0; i < 4; i++) {
-            code += chars[
-                Math.floor(Math.random() * chars.length)
+            code += characters[
+                Math.floor(
+                    Math.random() * characters.length
+                )
             ];
         }
 
@@ -969,30 +1237,65 @@
         save();
         renderBoxes();
 
+        createdBoxId = box.id;
+
         closeModal("createModal");
 
-        setTimeout(() => {
-            openBox(box.id);
-        }, 200);
+        document.getElementById(
+            "createdInviteCode"
+        ).textContent = box.inviteCode;
+
+        openModal("createdModal");
+    }
+
+    function copyCreatedCode() {
+        const box = boxes.find(
+            item => item.id === createdBoxId
+        );
+
+        if (!box) {
+            return;
+        }
+
+        copyText(box.inviteCode);
+    }
+
+    function openCreatedBox() {
+        closeModal("createdModal");
+
+        if (createdBoxId) {
+            openBox(createdBoxId);
+        }
     }
 
     function renderBoxes() {
-        const container = document.getElementById("boxes");
+        const container =
+            document.getElementById("boxes");
 
         if (!boxes.length) {
             container.innerHTML = `
                 <div class="empty">
-                    <div style="font-size:45px; margin-bottom:12px;">
+
+                    <div
+                        style="
+                            font-size:45px;
+                            margin-bottom:12px;
+                        "
+                    >
                         🎁
                     </div>
 
-                    <h3 style="margin-bottom:8px;">
+                    <h3
+                        style="margin-bottom:8px;"
+                    >
                         Пока нет коробок
                     </h3>
 
                     <p>
-                        Создай первую коробку для своего Secret Santa.
+                        Создай первую коробку
+                        для своего Secret Santa.
                     </p>
+
                 </div>
             `;
 
@@ -1000,62 +1303,70 @@
         }
 
         container.innerHTML = boxes
-            .map(box => {
-                return `
-                    <div class="box">
-                        <div
-                            class="box-glow"
-                            style="background:${box.color};"
-                        ></div>
+            .map(box => `
+                <div class="box">
 
-                        <div class="box-icon">
-                            🎁
-                        </div>
+                    <div
+                        class="box-glow"
+                        style="
+                            background:${box.color};
+                        "
+                    ></div>
 
-                        <h3>
-                            ${escapeHTML(box.name)}
-                        </h3>
-
-                        <div class="box-description">
-                            ${escapeHTML(
-                                box.description ||
-                                "Без описания"
-                            )}
-                        </div>
-
-                        <div class="box-info">
-                            <span class="tag">
-                                👥 ${box.people.length}
-                            </span>
-
-                            <span class="tag">
-                                🔑 ${box.inviteCode}
-                            </span>
-                        </div>
-
-                        <div class="box-actions">
-                            <button
-                                class="btn"
-                                onclick="openBox('${box.id}')"
-                            >
-                                Открыть
-                            </button>
-
-                            <button
-                                class="btn"
-                                onclick="deleteBox('${box.id}')"
-                            >
-                                🗑
-                            </button>
-                        </div>
+                    <div class="box-icon">
+                        🎁
                     </div>
-                `;
-            })
+
+                    <h3>
+                        ${escapeHTML(box.name)}
+                    </h3>
+
+                    <div class="box-description">
+                        ${escapeHTML(
+                            box.description ||
+                            "Без описания"
+                        )}
+                    </div>
+
+                    <div class="box-info">
+
+                        <span class="tag">
+                            👥 ${box.people.length}
+                        </span>
+
+                        <span class="tag code-tag">
+                            🔑 ${box.inviteCode}
+                        </span>
+
+                    </div>
+
+                    <div class="box-actions">
+
+                        <button
+                            class="btn"
+                            onclick="openBox('${box.id}')"
+                        >
+                            Открыть
+                        </button>
+
+                        <button
+                            class="btn btn-danger"
+                            onclick="deleteBox('${box.id}')"
+                        >
+                            🗑
+                        </button>
+
+                    </div>
+
+                </div>
+            `)
             .join("");
     }
 
     function openJoinModal() {
-        document.getElementById("inviteInput").value = "";
+        document.getElementById(
+            "inviteInput"
+        ).value = "";
 
         openModal("joinModal");
 
@@ -1084,7 +1395,10 @@
         );
 
         if (!box) {
-            alert("Коробка с таким кодом не найдена.");
+            alert(
+                "Коробка с таким инвайт-кодом не найдена."
+            );
+
             return;
         }
 
@@ -1092,23 +1406,28 @@
 
         closeModal("joinModal");
 
-        document.getElementById("joinBoxInfo").innerHTML = `
-            <strong>${escapeHTML(box.name)}</strong>
+        document.getElementById(
+            "joinBoxInfo"
+        ).innerHTML = `
+            <strong>
+                ${escapeHTML(box.name)}
+            </strong>
 
             <br>
 
-            ${
-                escapeHTML(
-                    box.description ||
-                    "Без описания"
-                )
-            }
+            ${escapeHTML(
+                box.description ||
+                "Без описания"
+            )}
         `;
 
-        document.getElementById("participantName").value = "";
-        document.getElementById("participantEmail").value = "";
-        document.getElementById("participantWishes").value = "";
-        document.getElementById("participantExtra").value = "";
+        document.getElementById(
+            "participantNickname"
+        ).value = "";
+
+        document.getElementById(
+            "participantWishes"
+        ).value = "";
 
         openModal("participantModal");
     }
@@ -1123,13 +1442,8 @@
             return;
         }
 
-        const name = document
-            .getElementById("participantName")
-            .value
-            .trim();
-
-        const email = document
-            .getElementById("participantEmail")
+        const nickname = document
+            .getElementById("participantNickname")
             .value
             .trim();
 
@@ -1138,42 +1452,36 @@
             .value
             .trim();
 
-        const extra = document
-            .getElementById("participantExtra")
-            .value
-            .trim();
-
-        if (!name) {
-            alert("Введите имя.");
-            return;
-        }
-
-        if (!email || !email.includes("@")) {
-            alert("Введите корректный email.");
+        if (!nickname) {
+            alert("Введите ник.");
             return;
         }
 
         const existing = box.people.find(
             person =>
-                person.email.toLowerCase() ===
-                email.toLowerCase()
+                person.nickname.toLowerCase() ===
+                nickname.toLowerCase()
         );
 
         if (existing) {
             alert(
-                "Этот email уже участвует в данной коробке."
+                "Такой ник уже участвует в этой коробке."
             );
 
             return;
         }
 
         box.people.push({
-            id: Date.now().toString(),
-            name,
-            email,
-            wishes,
-            extra
+            id:
+                Date.now().toString() +
+                Math.random()
+                    .toString(36)
+                    .substring(2),
+            nickname,
+            wishes
         });
+
+        box.assignments = {};
 
         save();
         renderBoxes();
@@ -1181,7 +1489,8 @@
         closeModal("participantModal");
 
         alert(
-            `Готово, ${name}! Ты присоединился к "${box.name}".`
+            `Готово, ${nickname}! 🎁\n\n` +
+            `Ты присоединился к "${box.name}".`
         );
     }
 
@@ -1196,13 +1505,24 @@
 
         currentBoxId = id;
 
-        document.getElementById("boxModalTitle").textContent =
-            box.name;
+        document.getElementById(
+            "boxModalTitle"
+        ).textContent = box.name;
 
-        document.getElementById("boxInviteCode").textContent =
-            box.inviteCode;
+        document.getElementById(
+            "boxInviteCode"
+        ).textContent = box.inviteCode;
 
-        document.getElementById("peopleCount").textContent =
+        updatePeopleCount(box);
+        renderPeople(box);
+
+        openModal("boxModal");
+    }
+
+    function updatePeopleCount(box) {
+        document.getElementById(
+            "peopleCount"
+        ).textContent =
             `${box.people.length} ${
                 plural(
                     box.people.length,
@@ -1211,18 +1531,18 @@
                     "участников"
                 )
             }`;
-
-        renderPeople(box);
-
-        openModal("boxModal");
     }
 
     function renderPeople(box) {
-        const list = document.getElementById("peopleList");
+        const list =
+            document.getElementById("peopleList");
 
         if (!box.people.length) {
             list.innerHTML = `
-                <div class="empty" style="padding:25px;">
+                <div
+                    class="empty"
+                    style="padding:25px;"
+                >
                     Пока никто не присоединился.
                 </div>
             `;
@@ -1231,32 +1551,56 @@
         }
 
         list.innerHTML = box.people
-            .map(person => {
-                return `
-                    <div class="person">
-                        <div>
-                            <div class="person-name">
-                                ${escapeHTML(person.name)}
-                            </div>
+            .map(person => `
+                <div class="person">
 
-                            <div class="person-email">
-                                ${escapeHTML(person.email)}
-                            </div>
+                    <div class="person-main">
+
+                        <div class="person-name">
+                            👤 ${escapeHTML(
+                                person.nickname
+                            )}
                         </div>
 
-                        <button
-                            class="delete-btn"
-                            onclick="removePerson('${box.id}', '${person.id}')"
-                        >
-                            Удалить
-                        </button>
+                        ${
+                            person.wishes
+                                ? `
+                                    <div class="person-wishes">
+                                        💭 ${escapeHTML(
+                                            person.wishes
+                                        )}
+                                    </div>
+                                `
+                                : `
+                                    <div class="person-wishes">
+                                        Пожелания не указаны
+                                    </div>
+                                `
+                        }
+
                     </div>
-                `;
-            })
+
+                    <button
+                        class="delete-btn"
+                        onclick="
+                            removePerson(
+                                '${box.id}',
+                                '${person.id}'
+                            )
+                        "
+                    >
+                        Удалить
+                    </button>
+
+                </div>
+            `)
             .join("");
     }
 
-    function removePerson(boxId, personId) {
+    function removePerson(
+        boxId,
+        personId
+    ) {
         const box = boxes.find(
             item => item.id === boxId
         );
@@ -1265,7 +1609,11 @@
             return;
         }
 
-        if (!confirm("Удалить этого участника?")) {
+        if (
+            !confirm(
+                "Удалить этого участника?"
+            )
+        ) {
             return;
         }
 
@@ -1276,9 +1624,9 @@
         box.assignments = {};
 
         save();
+        renderBoxes();
 
         openBox(boxId);
-        renderBoxes();
     }
 
     function runSanta() {
@@ -1298,23 +1646,30 @@
             return;
         }
 
-        const shuffled = shuffle(
-            box.people.map(person => person.id)
+        const shuffled = createDerangement(
+            box.people.map(
+                person => person.id
+            )
         );
+
+        if (!shuffled) {
+            alert(
+                "Не удалось провести жеребьёвку. Попробуйте ещё раз."
+            );
+
+            return;
+        }
 
         const assignments = {};
 
-        for (let i = 0; i < box.people.length; i++) {
-            const personId = box.people[i].id;
-            const targetId = shuffled[i];
-
-            if (personId === targetId) {
-                runSanta();
-
-                return;
-            }
-
-            assignments[personId] = targetId;
+        for (
+            let i = 0;
+            i < box.people.length;
+            i++
+        ) {
+            assignments[
+                box.people[i].id
+            ] = shuffled[i];
         }
 
         box.assignments = assignments;
@@ -1323,57 +1678,101 @@
 
         closeModal("boxModal");
 
-        alert(
-            "Жеребьёвка завершена! 🎅\n\n" +
-            "В этой версии результаты сохранены локально.\n" +
-            "Для реальной отправки писем нужно подключить сервер."
-        );
-
         showResult(box);
     }
 
+    function createDerangement(ids) {
+        const result = [...ids];
+
+        for (let attempt = 0; attempt < 1000; attempt++) {
+            shuffleArray(result);
+
+            let valid = true;
+
+            for (let i = 0; i < ids.length; i++) {
+                if (ids[i] === result[i]) {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (valid) {
+                return [...result];
+            }
+        }
+
+        return null;
+    }
+
+    function shuffleArray(array) {
+        for (
+            let i = array.length - 1;
+            i > 0;
+            i--
+        ) {
+            const j = Math.floor(
+                Math.random() * (i + 1)
+            );
+
+            [
+                array[i],
+                array[j]
+            ] = [
+                array[j],
+                array[i]
+            ];
+        }
+
+        return array;
+    }
+
     function showResult(box) {
-        const firstPerson = box.people[0];
+        const currentParticipant =
+            box.people[0];
 
         const targetId =
-            box.assignments[firstPerson.id];
+            box.assignments[
+                currentParticipant.id
+            ];
 
-        const target = box.people.find(
-            person => person.id === targetId
-        );
+        const target =
+            box.people.find(
+                person =>
+                    person.id === targetId
+            );
 
         if (!target) {
             return;
         }
 
-        document.getElementById("resultName").textContent =
-            `${firstPerson.name} → ${target.name}`;
+        document.getElementById(
+            "resultName"
+        ).textContent =
+            `🎁 ${target.nickname}`;
 
-        document.getElementById("resultDetails").innerHTML = `
+        document.getElementById(
+            "resultDetails"
+        ).innerHTML = `
             <div>
-                <strong>Получатель:</strong>
-                ${escapeHTML(target.name)}
-            </div>
+                <strong>
+                    Тебе выпал:
+                </strong>
 
-            <div>
-                <strong>Email:</strong>
-                ${escapeHTML(target.email)}
-            </div>
-
-            <div>
-                <strong>Пожелания:</strong>
                 ${escapeHTML(
-                    target.wishes ||
-                    "Не указаны"
+                    target.nickname
                 )}
             </div>
 
             <div>
-                <strong>Дополнительно:</strong>
-                ${escapeHTML(
-                    target.extra ||
-                    "Не указано"
-                )}
+                <strong>
+                    Пожелания:
+                </strong>
+
+                ${target.wishes
+                    ? escapeHTML(
+                        target.wishes
+                    )
+                    : "Не указаны"}
             </div>
         `;
 
@@ -1389,18 +1788,35 @@
             return;
         }
 
-        navigator.clipboard
-            .writeText(box.inviteCode)
-            .then(() => {
-                alert(
-                    "Инвайт-код скопирован! 📋"
-                );
-            })
-            .catch(() => {
-                alert(
-                    `Код: ${box.inviteCode}`
-                );
-            });
+        copyText(box.inviteCode);
+    }
+
+    function copyText(text) {
+        if (
+            navigator.clipboard &&
+            navigator.clipboard.writeText
+        ) {
+            navigator.clipboard
+                .writeText(text)
+                .then(() => {
+                    alert(
+                        `Код ${text} скопирован! 📋`
+                    );
+                })
+                .catch(() => {
+                    showCodeFallback(text);
+                });
+
+            return;
+        }
+
+        showCodeFallback(text);
+    }
+
+    function showCodeFallback(text) {
+        alert(
+            `Скопируй код:\n\n${text}`
+        );
     }
 
     function deleteBox(id) {
@@ -1428,37 +1844,15 @@
         renderBoxes();
     }
 
-    function shuffle(array) {
-        const result = [...array];
-
-        for (
-            let i = result.length - 1;
-            i > 0;
-            i--
-        ) {
-            const j = Math.floor(
-                Math.random() * (i + 1)
-            );
-
-            [
-                result[i],
-                result[j]
-            ] = [
-                result[j],
-                result[i]
-            ];
-        }
-
-        return result;
-    }
-
     function plural(
         number,
         one,
         few,
         many
     ) {
-        const n = Math.abs(number) % 100;
+        const n =
+            Math.abs(number) % 100;
+
         const n1 = n % 10;
 
         if (n > 10 && n < 20) {
@@ -1489,9 +1883,13 @@
         "click",
         event => {
             if (
-                event.target.classList.contains("modal")
+                event.target.classList.contains(
+                    "modal"
+                )
             ) {
-                event.target.classList.remove("active");
+                event.target.classList.remove(
+                    "active"
+                );
             }
         }
     );
@@ -1501,10 +1899,23 @@
         event => {
             if (event.key === "Escape") {
                 document
-                    .querySelectorAll(".modal.active")
+                    .querySelectorAll(
+                        ".modal.active"
+                    )
                     .forEach(modal => {
-                        modal.classList.remove("active");
+                        modal.classList.remove(
+                            "active"
+                        );
                     });
+            }
+
+            if (
+                event.key === "Enter" &&
+                document
+                    .getElementById("joinModal")
+                    .classList.contains("active")
+            ) {
+                findBoxByCode();
             }
         }
     );
